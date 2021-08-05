@@ -100,9 +100,9 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 pt-3">
-                        <span class="dog">Doğum Tarihi</span>
-                        <input name="dogumtar" id="dogumtar" type="date" class="form-control" value="13.03.2021"
-                               placeholder="Doğum Tarihi" data-mask='dd.mm.yyyy' data-date="12-02-2012" data-date-format="dd.mm.yyyy" required>
+                       
+                        <input name="dogumtar" id="dogumtar" type="text" class="form-control" placeholder="Doğum Tarihi"
+                              data-mask="dd.mm.yyyy"  data-date-format="dd-mm-yyyy" required>
                         <div class="invalid-feedback tco">
                             Eksik veya hatalı Doğum tarihi girdiniz. Lütfen geçerli bir tarih giriniz.
                         </div>
@@ -414,10 +414,13 @@
         //    });
         //}
 
-        //$('#dogumtar').datepicker({
-        //    format: 'dd.mm.yyyy',
-        //    startDate: '-3d'
-        //});
+        $('#dogumtar').datepicker({
+            dateFormat: "dd.mm.yyyy",
+            monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+            dayNamesMin: ["Pa", "Pt", "Sl", "Ça", "Pe", "Cu", "Ct"],
+            firstDay: 1,
+            maxDate: 'today'
+        });
     </script>
 
     @*<script src="https://www.google.com/recaptcha/api.js?onload=recaptchaReady&&render=explicit"></script>*@

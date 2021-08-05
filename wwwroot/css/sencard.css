@@ -170,7 +170,35 @@ footer {
 
 
 /*Form Validate*/
+.ui-datepicker {
+    background: #fff;
+    padding: 15px;
+    font-size: 14px;
+    min-width: 200px;
+    box-shadow: 0 0 0 0.2rem rgba(0, 174, 239, 0.06); border-radius:10px;
+}
+    .ui-datepicker .ui-state-highlight {
+        background: #00aeef;color:#fff;
+    }
 
+.ui-datepicker-calendar{float:left;width:100%;}
+.ui-datepicker-next{float:right;content:'>';}
+
+#dogumtar::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 0;
+    background: url(../img/date-icon-alpha2.png) no-repeat;
+}
+#dogumtar::-webkit-datetime-edit {
+    position: relative;
+    left: 0;
+
+}
+#dogumtar::-webkit-datetime-edit-fields-wrapper {
+    left: 0;
+    background: url(../img/date-icon-alpha2.png) no-repeat;
+
+}
 
 .TCform .formicon {
     position: absolute;
@@ -312,10 +340,10 @@ footer {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     lighting-color: none;
-    font-size: 17px; padding-top:22px;
+    font-size: 22px; 
     background-size: 36px;
     color: #ccc;
-    background-position: left; text-indent:24px;
+    background-position: left; text-indent:50px;
     background-position-x: 8px;
     background-position-y: 8px; padding-left:0px;
 }
