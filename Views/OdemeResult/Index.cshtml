@@ -1,0 +1,404 @@
+﻿@model ResultForm
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>senCard Market</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/css/sencard.css" rel="stylesheet"/>
+    <!-- Bootstrap core CSS -->
+    <link href="~/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="~/img/favicon.png" type="image/x-icon">
+</head>
+@if (Model != null && Model.ResponseCode == "00")
+{
+    <body class="d-flex flex-column h-100" onload="loadinggg()">
+    <div id="loaderBG">
+        <div id="loader"></div>
+    </div>
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md fixed-top">
+            <a class="navbar-brand" href="/"></a>
+
+
+            <div class="nav-right">
+
+                <a class="Cagri-Merkezi" href="#">
+                    <span>
+                        <img src="~/img/phone.png"/> 0216 570 55 55
+                        <p class="saatler">Hafta içi her gün 08.30 - 17.30</p>
+                    </span>
+
+                </a>
+                <a class="Soru-Cevap" href="#" data-toggle="modal" data-target="#sikca-sorulan-sorular" title="Soru & Cevap">
+                    <img src="~/img/ask.png"/> <span class="SText">Soru & Cevap</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!--Header ./-->
+    <!-- Contents -->
+    <section class="Contents">
+        <div class="container">
+
+            <div class="row">
+                <ul class="steps">
+                    <li class="step step-active ">
+                        <div class="step-content">
+                            <span class="step-text">Giriş</span>
+                            <span class="step-circle"></span>
+                        </div>
+                    </li>
+                    <li class="step step-active">
+                        <div class="step-content">
+                            <span class="step-text">İletişim Bilgisi</span>
+                            <span class="step-circle"></span>
+
+
+                        </div>
+                    </li>
+                    <li class="step step-active">
+                        <div class="step-content">
+                            <span class="step-text">Sağlık Bilgisi</span>
+                            <span class="step-circle"></span>
+
+
+                        </div>
+                    </li>
+                    <li class="step step-active">
+                        <div class="step-content">
+                            <span class="step-text">Paket Seçimi</span>
+                            <span class="step-circle"></span>
+
+                        </div>
+                    </li>
+                    <li class="step step-active">
+                        <div class="step-content">
+                            <span class="step-text">Ödeme</span>
+                            <span class="step-circle"></span>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bupa-logo">
+                <a href="https://www.bupaacibadem.com.tr/" target="_blank">
+                    <img src="~/img/bupa-logo.png"/>
+                </a>
+            </div>
+
+
+            <h1 class="mt-5">Size en uygun <span>tamamlayıcı sağlık sigortası</span></h1>
+            <p class="text-center">
+                <img src="~/img/checkicon.png" style="max-width: 80px;margin-top: 30px;"/>
+            </p>
+
+            <h3>
+                <strong style="font-weight: 600;">Ödeme işleminiz başarıyla tamamlandı.</strong><br><br>
+                Bupa Acıbadem Sigorta'ya Hoş Geldiniz!<br><br>
+
+                Sağlıklı ve mutlu bir yaşam için tercih ettiğiniz tüm teminatlar Bupa Acıbadem Sigorta poliçeniz ile güvence altında.
+                <br><br>
+                Poliçeniz e-posta adresinize gün içerisinde iletilecektir.
+                <br><br>
+                Güvencenize ek <span id="hediyeceki-TL"></span> TL'lik <img src="~/img/boyner-logo.png" style="margin-top: -5px;"/> HEDİYE ÇEKİ kodunuz, poliçenizin başlangıç tarihinden 30 gün sonra e-posta adresinize gönderilecektir.
+                <br><br>
+                Sağlıklı günler dileriz.
+                <br><br>
+                <strong style="font-weight: 600;">Poliçenizi indirmek için <a href="" class="link-item-pdf" target="_blank">tıklayınız.</a></strong>
+            </h3>
+        </div>
+    </section>
+    <!-- Contents ./-->
+    <!--Footer ./-->
+    <footer class="footer py-3">
+        <div class="col-md-12">
+            <span class="text-muted">© senCard 2021</span>
+            <div class="socials">
+                <a href=" https://www.facebook.com/sencardofficial/" target="_blank">
+                    <img src="~/img/facebook.png"/>
+                </a>
+                <a href="https://jm.linkedin.com/company/sencard" target="_blank">
+                    <img src="~/img/linkedin.png"/>
+                </a>
+                <a href="https://www.instagram.com/sencard/" target="_blank">
+                    <img src="~/img/instagram.png"/>
+                </a>
+                <a href="https://twitter.com/sencardofficial" target="_blank">
+                    <img src="~/img/twitter.png"/>
+                </a>
+                <a href="https://www.youtube.com/c/SenCardOfficial" target="_blank">
+                    <img src="~/img/youtube.png"/>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!--Footer ./-->
+    <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>-->
+    <script src="~/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="~/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/static.js"></script>
+    <script src="~/js/main.js"></script>
+    <script>
+            $('#hediyeceki-TL').text(localStorage.getItem('hediyeceki-TL'));
+            payment();
+
+            function payment() {
+                let payment = {
+                    "proposalId": localStorage.getItem('proposalId'),
+                    "paymentPlanId": localStorage.getItem('paymentPlanId'),
+                    "token": localStorage.getItem("token")
+                };
+
+                $.ajax({
+                    url: window.baseUrl+'/tss/api/payment',
+                    method: "POST",
+                    contentType: "application/json",
+                    data: JSON.stringify(payment),
+                    success: function (result) {
+                        $(".link-item-pdf").attr('href', result.printPolicyResponse.data);
+                        // localStorage.clear();
+                    },
+                    error: function (err) {
+                        console.log(err);
+                        //  localStorage.clear();
+                    },
+                })
+            }
+        </script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    </body>
+}
+else
+{
+    <body class="d-flex flex-column h-100" onload="loadinggg()">
+    <div id="loaderBG">
+        <div id="loader"></div>
+    </div>
+    <header>
+        <nav class="navbar navbar-expand-md fixed-top">
+            <a class="navbar-brand" href="#"></a>
+            <div class="nav-right">
+
+                <a class="Cagri-Merkezi" href="#">
+                    <span>
+                        <img src="~/img/phone.png"/> 0216 570 55 55
+                        <p class="saatler">Hafta içi her gün 08.30 - 17.30</p>
+                    </span>
+
+                </a>
+                <a class="Soru-Cevap" href="#" title="Soru & Cevap">
+                    <img src="~/img/ask.png"/> <span class="SText">Soru & Cevap</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <section class="Contents">
+        <div class="container">
+
+            <div class="row">
+                <ul class="steps">
+                    <li class="step step-active ">
+                        <div class="step-content">
+                            <span class="step-text">Giriş</span>
+                            <span class="step-circle"></span>
+                        </div>
+                    </li>
+                    <li class="step step-active">
+                        <div class="step-content">
+                            <span class="step-text">İletişim Bilgisi</span>
+                            <span class="step-circle"></span>
+                        </div>
+                    </li>
+                    <li class="step step-active">
+                        <div class="step-content">
+                            <span class="step-text">Sağlık Bilgisi</span>
+                            <span class="step-circle"></span>
+
+                        </div>
+                    </li>
+                    <li class="step step-active">
+                        <div class="step-content">
+                            <span class="step-text">Paket Seçimi</span>
+                            <span class="step-circle"></span>
+
+                        </div>
+                    </li>
+                    <li class="step step-active">
+                        <div class="step-content">
+                            <span class="step-text">Ödeme</span>
+                            <span class="step-circle"></span>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bupa-logo">
+                <img src="~/img/bupa-logo.png" alt=""/>
+            </div>
+            <h1 class="mt-5">Size en uygun <span>tamamlayıcı sağlık sigortası</span></h1>
+            <p class="text-center">
+                <img src="~/img/uyari-info.png" style="max-width: 80px;margin-top: 30px;" alt=""/>
+            </p>
+            <h3>
+                <strong style="font-weight: 600;">Ödeme işleminiz başarısız.</strong><br><br>İşleminize devam demiyoruz, bilgilerinizi kontrol edip tekrar deneyiniz.
+                <br><br>
+
+
+                <div style="display:none">
+                    Hata Kodu :
+                    @{
+                        if (Model != null)
+                        {
+                            @(Model.ResponseCode)
+                            ;
+                        }
+                        else
+                        {
+                            @("Bir problem oluştu.")
+                        }
+                    }
+                </div>
+                <br><br>
+                Açıklama:
+
+                @{
+                    if (Model != null)
+                    {
+                        @(Model.ErrorMsg)
+                        ;
+                    }
+                    else
+                    {
+                        @("Lütfen bize 0216 570 55 55'den ulaşın.")
+                    }
+                }
+                <br><br>
+
+                <button type="button" class="btn btn-tekrarode" onclick="location.href='/Bupa/Odeme'" style="color:#fff; background:#808080;">Tekrar deneyiniz</button>
+            </h3>
+        </div>
+    </section>
+    <!-- Contents ./-->
+    <!--Footer ./-->
+    <footer class="footer py-3">
+        <div class="col-md-12">
+            <span class="text-muted">© senCard 2021</span>
+            <div class="socials">
+                <a href="https://www.facebook.com/sencardofficial/" target="_blank">
+                    <img src="assets/img/facebook.png"/>
+                </a>
+                <a href="https://jm.linkedin.com/company/sencard" target="_blank">
+                    <img src="assets/img/linkedin.png"/>
+                </a>
+                <a href="https://www.instagram.com/sencard/" target="_blank">
+                    <img src="assets/img/instagram.png"/>
+                </a>
+                <a href="https://twitter.com/sencardofficial" target="_blank">
+                    <img src="assets/img/twitter.png"/>
+                </a>
+                <a href="https://www.youtube.com/c/SenCardOfficial" target="_blank">
+                    <img src="assets/img/youtube.png"/>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <!--Footer ./-->
+    <div class="modal sss fade" id="sikca-sorulan-sorular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Sıkça Sorulan Sorular</h2>
+                    <h3>1. senCard Market üzerinden Tamamlayıcı Sağlık Sigortası satın alma sürecimi tamamladıktan sonra poliçe bilgilerime nasıl ulaşabilirim?</h3>
+                    <p>
+                        senCard Market üzerinden poliçe satın alma işlemi gerçekleştirildikten hemen sonra, satın alma adımında kaydettiğiniz cep telefonunuza “Hoş geldin SMS’i” ve E-posta adresinize poliçe bilgileriniz iletilecektir.
+                        <br/><br/>Tüm bunlara ek olarak dilediğiniz zaman <a href="https://www.sencard.com.tr/mobil" target="_blank">senCard Mobil</a> ve <a href="https://www.sencard.com.tr/webSen/" target="_blank">websen</a> üzerinden poliçe bilgilerinize ulaşılabilirsiniz.
+                    </p>
+                    <h3>2. Poliçemin geçerli olduğu Anlaşmalı Kurum Ağı’nda yer alan sağlık kurumları bilgisine nasıl ulaşabilirim?</h3>
+                    <p>Poliçenizin geçerli olduğu ve hizmet alabileceğiniz kurumlara <a href="https://www.sencard.com.tr/sik-kullanilanlar/medikal-hizmet-agi" target="_blank">https://www.sencard.com.tr/sik-kullanilanlar/medikal-hizmet-agi </a> üzerinden ulaşabilirsiniz.</p>
+
+                    <h3>3. Online Tamamlayıcı Sağlık Sigortası ile ilgili bir sorum olursa kime danışacağım?</h3>
+                    <p>senCard Market üzerinden gerçekleştirdiğiniz tüm işlemlerinizde 0216 570 55 55 no’lu Dijital Satış Kanalımızdan hafta içi her gün 08:30 – 17:30 saatleri arasında detaylı bilgi alabilirsiniz.</p>
+                    <h3>4. Online satın alma sürecime devam edemiyorum. Neden Dijital Satış Danışmanına yönlendirildim?</h3>
+                    <p>Gerçekleştirdiğiniz işlemleriniz ile ilgili Dijital Satış Danışmanınız’dan detaylı bilgi alabilirsiniz.</p>
+                    <h3>5. Neden Online Tamamlayıcı Sağlık Sigortası Yaptırmalıyım?</h3>
+                    <p>
+                        Genel Sağlık Sigortası kapsamında alınan hizmetler için, anlaşmalı özel sağlık kuruluşlarında herhangi bir işlem farkı ödemeden, sağlık güvencesine sahip olmak istiyorsanız; senCard Market üzerinden sadece 5 adımda Tamalayıcı Sağlık Sigortasına sahip olabilirsiniz.
+                        <br/><br/>
+                        Bütçenize uygun ödeme seçenekleri, ihtiyacınıza uygun medikal hizmet ağınızı kendi seçimlerinize göre düzenleyebilir, boynerden hediye çeki ve tüm bunlara ek olarak sencard üyelik programının bir üyesi olarak benzersiz ayrıcalıklı hizmetlerden faydalanabilirsiniz.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>-->
+    <script src="~/js/vendor/jquery-3.5.1.min.js"></script>
+
+    <script src="~/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/static.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+
+        payment();
+
+        function payment() {
+            let payment = {
+                "proposalId": localStorage.getItem('proposalId'),
+                "totalAmount":localStorage.getItem('price'),
+                "paymentPlanId": localStorage.getItem('paymentPlanId'),
+                "assecoPaymentResponse": {
+                    "errorMsg":"@Model.ErrorMsg",
+                    "errorCode": "@Model.ErrorCode",
+                    "responseCode":"@Model.ResponseCode",
+                    "responseMsg":"@Model.ResponseMsg",
+                    "sessionToken":"@Model.SessionToken",
+
+                },
+                "token": localStorage.getItem("token")
+            };
+
+            $.ajax({
+                url: window.baseUrl+'/tss/api/payment',
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(payment),
+                success: function (result) {
+                    $(".link-item-pdf").attr('href', result.printPolicyResponse.data);
+                    // localStorage.clear();
+                },
+                error: function (err) {
+                    console.log(err);
+                    //  localStorage.clear();
+                },
+            })
+        }
+    </script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNHVTJRX7R"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NNHVTJRX7R');
+    </script>
+
+    </body>
+}
+</html>

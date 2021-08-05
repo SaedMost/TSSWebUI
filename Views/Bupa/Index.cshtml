@@ -1,0 +1,436 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>senCard Market</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/css/sencard.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS -->
+    <link href="~/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="~/img/favicon.png" type="image/x-icon">
+</head>
+<body class="d-flex flex-column h-100">
+    <div id="loaderBG" style="display: none">
+        <div id="loader"></div>
+    </div>
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md fixed-top">
+            <a class="navbar-brand" href="/"></a>
+
+
+            <div class="nav-right">
+
+                <a class="Cagri-Merkezi" href="#">
+                    <span>
+
+                        <img src="~/img/phone.png" /> 0216 570 55 55
+                        <p class="saatler">Hafta içi her gün 08.30 - 17.30</p>
+                    </span>
+
+                </a>
+                <a class="Soru-Cevap" href="#" data-toggle="modal" data-target="#sikca-sorulan-sorular" title="Soru & Cevap">
+                    <img src="~/img/ask.png" /> <span class="SText">Soru & Cevap</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!--Header ./-->
+    <!-- Contents -->
+    <section class="Contents">
+        <div class="container">
+            <div class="row">
+                <ul class="steps">
+                    <li class="step step-active ">
+
+                        <div class="step-content">
+                            <span class="step-text">Giriş</span>
+                            <a href="#">
+                                <span class="step-circle"></span>
+                            </a>
+                        </div>
+
+                    </li>
+                    <li class="step">
+                        <div class="step-content">
+                            <span class="step-text">İletişim Bilgisi</span>
+                            <span class="step-circle"></span>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-content">
+                            <span class="step-text">Sağlık Bilgisi</span>
+                            <span class="step-circle"></span>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-content">
+                            <span class="step-text">Paket Seçimi</span>
+                            <span class="step-circle"></span>
+                        </div>
+                    </li>
+                    <li class="step">
+                        <div class="step-content">
+                            <span class="step-text">Ödeme</span>
+                            <span class="step-circle"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="bupa-logo">
+                <a href="https://www.bupaacibadem.com.tr/" target="_blank">
+                    <img src="~/img/bupa-logo.png" />
+                </a>
+            </div>
+            <h1 class="mt-5">Size en uygun <span>tamamlayıcı sağlık sigortası</span></h1>
+            <h3>
+                İhtiyaçlarınıza en uygun sağlık planını bulabilmemiz için öncelikle kimlik bilginize ve onayınıza
+                ihtiyacımız olacak.
+            </h3>
+            <div class="TCform">
+                <form name="tcform" id="tcform" class="needs-validation" novalidate>
+                    <div class="col-xs-12 col-sm-12">
+                        <input name="tcno" id="tcno" type="text" class="form-control" value=""
+                               placeholder="TC Kimlik No" data-mask="00000000000" required>
+                        <a onclick="document.getElementById('tcno').value = ''" class="temizleTC">Temizle</a>
+                        <div class="invalid-feedback tco">
+                            Eksik veya hatalı TC Kimlik Numarası girdiniz. Lütfen geçerli bir TC Kimlik Numarası giriniz
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 pt-3">
+                        <span class="dog">Doğum Tarihi</span>
+                        <input name="dogumtar" id="dogumtar" type="date" class="form-control" value="13.03.2021"
+                               placeholder="Doğum Tarihi" data-mask='dd.mm.yyyy' data-date="12-02-2012" data-date-format="dd.mm.yyyy" required>
+                        <div class="invalid-feedback tco">
+                            Eksik veya hatalı Doğum tarihi girdiniz. Lütfen geçerli bir tarih giriniz.
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">
+                        @*<div class="recaptcha-wrapper">
+                                <div id="myrecaptcha" class="g-recaptcha"></div>
+                                <div class="rc-anchor-checkbox-label">Ben robot değilim</div>
+                                <div class="recaptcha-info"></div>
+                                <div class="rc-anchor-logo-text">reCAPTCHA</div>
+                                <div class="rc-anchor-pt">
+                                    <a href="https://www.google.com/intl/en/policies/privacy/" target="_blank">Privacy</a>
+                                    <span aria-hidden="true" role="presentation"> - </span>
+                                    <a href="https://www.google.com/intl/en/policies/terms/" target="_blank">Terms</a>
+                                </div>
+                            </div>
+                            <div class="msg-error error"></div>*@
+                    </div>
+                    <div class="col-xs-12 col-sm-12 py-3">
+                        <div class="custom-control custom-checkbox">
+
+                            <input type="checkbox" class="custom-control-input" id="kvkk-onay" required>
+                            <label class="custom-control-label" for="kvkk-onay" style="color:#414141">
+                                <a href="" data-toggle="modal"
+                                   data-target="#kvkk">
+                                    <strong>KVKK</strong>
+                                </a> metnini okudum ve kabul
+                                ediyorum.
+                            </label>
+                            <div class="invalid-feedback checkfeed">
+                                İlerlemek için lütfen KVKK onay kutusunu doldurunuz.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12">
+                        <button id="btn-ileri" class="btn-next" type="button" onclick="btnNext()">İleri</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Contents ./-->
+    <!--Footer ./-->
+    <footer class="footer py-3">
+        <div class="col-md-12">
+            <span class="text-muted">© senCard 2021</span>
+            <div class="socials">
+                <a href=" https://www.facebook.com/sencardofficial/" target="_blank">
+                    <img src="~/img/facebook.png" />
+                </a>
+                <a href="https://jm.linkedin.com/company/sencard" target="_blank">
+                    <img src="~/img/linkedin.png" />
+                </a>
+                <a href="https://www.instagram.com/sencard/" target="_blank">
+                    <img src="~/img/instagram.png" />
+                </a>
+                <a href="https://twitter.com/sencardofficial" target="_blank">
+                    <img src="~/img/twitter.png" />
+                </a>
+                <a href="https://www.youtube.com/c/SenCardOfficial" target="_blank">
+                    <img src="~/img/youtube.png" />
+                </a>
+            </div>
+        </div>
+
+    </footer>
+    <!--Footer ./-->
+    <div class="modal fade" id="kvkk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <strong>KİŞİSEL VERİLERİN İŞLENMESİ HAKKINDA AYDINLATMA METNİ</strong><br /><br />
+
+                    Kişisel Verilerin İşlenme Amacı: 6698 sayılı Kişisel Verilerin Korunması Kanunu ("Kanun") kapsamında kişisel verileriniz ve kişisel sağlık verileriniz, sigorta teklifleri ve sigorta sözleşmeleri kapsamında Bupa Acıbadem Sigorta A.Ş. ("Sigorta Şirketi" veya “Şirketimiz”) tarafından Veri Sorumlusu sıfatıyla, poliçe ve sözleşme gereğinin ifa edilebilmesi, risk değerlendirmesi yapılabilmesi, sigorta primlerinin belirlenebilmesi, tahsilat yapılabilmesi, tazminat başvurularının sonuçlandırılabilmesi ve ödeme yapılabilmesi, sigortacılık ürün ve hizmetlerinin, avantaj veya kampanyaların sunulabilmesi, bilgilendirme, tanıtım, pazarlama ve satış da dahil olmak üzere her türlü iletişimin sağlanması ve bu amaçlarla ticari elektronik ileti gönderilebilmesi, sigorta poliçesi kapsamındaki yükümlülüklerinin ifa edilebilmesi, işlem yapanın/yaptıranın kimliğinin tespit edilebilmesi, SenCard uygulamasının aktive edilebilmesi ve kullandırılabilmesi, elektronik ortamda veya basılı olarak kayıt ve belge düzenlenebilmesi, mevzuatta öngörülen evrak saklama, raporlama ve bilgilendirme yükümlülüklerinin yerine getirilebilmesi ve istatistiksel amaçlarla işlenebilecektir.
+                    <br /><br />
+                    <strong>Toplanma Yöntemi:</strong> İşlenen Kişisel Verileriniz;<br />
+                    i. doğrudan sigortalıdan ya da sigorta ettiren aracılığıyla veya<br />
+                    ii. açık rızanız olması halinde T.C. Hazine ve Maliye Bakanlığı Sigortacılık Genel Müdürlüğü, Sigorta Bilgi ve Gözetim Merkezi (SBGM), Türkiye Sigorta Birliği (Türkiye Sigorta, Reasürans ve Emeklilik Şirketleri Birliği), Sosyal Güvenlik Kurumu, Sağlık Bakanlığı, tüm sağlık kurum ve kuruluşları, diğer sigorta şirketleri ve kamu kurum ve kuruluşları, özel ve resmi sağlık kurumları, eczaneler, laboratuvarlar, hekim ve diğer ilgili üçüncü kişiler/kurumlar vasıtasıyla sözlü, yazılı veya elektronik ortamda, tamamen veya kısmen otomatik olan ya da herhangi bir veri kayıt sisteminin parçası olarak otomatik olmayan yollarla temin edilebilecektir.
+                    <br /><br />
+                    <strong>Hukuki Sebebi:</strong> Kişisel sağlık verileriniz Kanun’un 5'inci maddesinde belirtilen, "Açık rıza" ve Kişisel verileriniz ise Kanunun 5'inci maddesinde belirtilen, "Açık rıza", "Kanunlarda açıkça öngörülmesi", "Bir sözleşmenin kurulması veya ifasıyla doğrudan doğruya ilgili olması kaydıyla, sözleşmenin taraflarına ait kişisel verilerin işlenmesinin gerekli olması", "Veri sorumlusunun hukuki yükümlülüğünü yerine getirebilmesi için zorunlu olması", "Bir hakkın tesisi, kullanılması veya korunması için veri işlemenin zorunlu olması" ve "İlgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla, veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması" hukuki sebeplerine dayanılarak;
+                    <br /><br />
+                    Kanun’da öngörülen ve yukarıda sayılan temel ilkelere uygun olarak;<br />
+                    1. Mevzuattan kaynaklanan yükümlülüklerin ve yasal bildirimlerin yerine getirilmesi, yasal takip süreçlerinin yürütülmesi,<br />
+                    2. Poliçe düzenleme öncesi gerekli bilgilerin toplanması, analizi, değerlendirilmesi, teklif hazırlanması, poliçe onayı, reddi, tanzimi, yenilenmesi, zeyil yapılması, eş, çocuk ve ilgililerin poliçeye dâhil edilmesi,<br />
+                    3. Sağlık Sigortası, Hayat Sigortası, Ferdi Kaza Sigortası, Seyahat Sigortası poliçe ve teklif çalışmalarının yapılması, tanzimi, yenilenmesi, tahsilat süreçlerinin yönetimi, prim ve komisyonların ödenmesi, geliştirme çalışmalarının yapılması,<br />
+                    4. Hasar ihbarlarının temini, incelenmesi, değerlendirilmesi, neticelendirilmesi, ödemelerin yapılması,<br />
+                    5. Rücu taleplerinin yapılması, değerlendirilmesi ve karşılanması,<br />
+                    6. Risk analizi ve yönetimi,<br />
+                    7. Stratejik işbirlikleri süreçlerinin yönetimi,<br />
+                    8. Reasürans ve koasürans süreçlerinin yönetimi,<br />
+                    9. Aleyhe açılan davalara ve/veya hasar ihbarlarına ilişkin cevap verilmesi amacıyla verilerin paylaşımı,<br />
+                    10. Pazarlama amacı taşımayan; hizmet kalitesi ve müşteri memnuniyetinin ölçümlenmesi, asistans hizmetlerinin takibi ile değerlendirilmesi, şikâyet yönetimi, anket çalışmalarının yapılması, ex-gratia hizmetlerinin sağlanması,<br />
+                    11. Gelen aramaların kayıt altına alınması, kayıtların hizmet kalitesinin arttırılması amacıyla kullanılması,<br />
+                    12. Çeşitli raporlamalar yapılması ve<br />
+                    13. Mevzuattan kaynaklanan yükümlülükleri yerine getirmek maksadıyla Hazine ve Maliye Bakanlığı, Sigorta Bilgi ve Gözetim Merkezi, Masak gibi kamu kurum ve kuruluşlar ile yargı mercilerine aktarılması gerekçeleriyle işlenmektedir.<br /><br />
+
+                    Açık Rızanız bulunması durumunda;<br />
+                    <br />1. Poliçe yapılması aşamasında sağlık verilerine ilişkin uzman görüşü alınması, geçmiş hasar araştırması yapılması, sağlık verilerinin risk değerlendirmesi için saklaması ve kullanılması,
+                    <br />2. Poliçe risk değerlendirmesinin yapılabilmesi, poliçe teklifinin oluşturulabilmesi için ve Sigorta Şirketi’nin sigortacılık mevzuatından kaynaklanan yükümlülüklerini gereği gibi yerine getirebilmesi amacıyla T.C. Hazine ve Maliye Bakanlığı Sigortacılık Genel Müdürlüğü, Sigorta Bilgi ve Gözetim Merkezi (SBGM), Türkiye Sigorta Birliği (Türkiye Sigorta, Reasürans ve Emeklilik Şirketleri Birliği), Sosyal Güvenlik Kurumu, Sağlık Bakanlığı, tüm sağlık kurum ve kuruluşları, diğer sigorta şirketleri ve kamu kurum ve kuruluşları, özel ve resmi sağlık kurumları, eczaneler, laboratuvarlar, hekim ve diğer ilgili üçüncü kişiler/kurumlar vasıtasıyla sağlık verilerinin temin edilmesi,
+                    <br />3. Kampanyalar oluşturulması da dâhil pazarlama operasyonlarının yürütülmesi, çapraz satış yapılması,
+                    <br />4. Aleyhe açılan davalara ve/veya hasar ihbarlarına ilişkin sağlık verilerinin medikal firmalar ve ilgili taraflarla paylaşımı,
+                    <br />5. Anket çalışmaları, pazar araştırması yapılması,
+                    <br />6. Yukarıda maddeler halinde sayılan durumların Kanun madde 5/2, madde 6/3, madde 28 ve benzer istisna hallerine girmemesi hallerine ilişkin amaçlar ve benzeri amaçlarla
+                    işlenmekte, işlenme amacıyla uygun süre zarfında fiziksel veya elektronik ortamda güvenli bir şekilde saklanmaktadır. Söz konusu faaliyetler kapsamında Şirketimizce kişisel verilerin korunmasına ilişkin olarak Kanun başta olmak üzere ilgili tüm mevzuatta öngörülen yükümlülüklere uygun hareket edilmektedir.
+                    <br /><br />
+                    <strong>Kişisel Verilerinizin Aktarıldığı Taraflar:</strong> Hukuka uygun olarak işlenen kişisel verileriniz Sigortacılık Kanunu ve diğer mevzuat hükümlerinin izin verdiği ölçüde, sigortacılık faaliyetlerimizi yürütmek (bu sayılanlarla sınırlı olmamak üzere, poliçe düzenlemek, sigorta primlerini belirlemek, taleplerinizi yönetmek, yenileme teklifi yapmak, riskleri reasüre etmek, sigorta ettirene bilgilendirme yapmak ve benzeri), riskleri ve suiistimalleri önlemek, kimliğinizi doğrulamak, ürün ve hizmetlerimizi iyileştirmek, koasürans süreçlerinin yönetimini yapmak, sigorta ettirenin taleplerini karşılamak, müşteri memnuniyetini ölçmek, bu kapsamda gerekli araştırma faaliyetlerini yapmak amacıyla; Şirketin Bölge Müdürlüklerine, acentelere, brokerlere, iş ortaklarına/stratejik iş ortaklarına, iştiraklerine, yurt dışındaki ortak şirketine, kamu kurumlarına (T.C. Hazine ve Maliye Bakanlığı Sigortacılık Genel Müdürlüğü, T.C. Hazine ve Maliye Bakanlığı Sigorta Denetleme Kurulu, Hazine ve Maliye Bakanlığı’nın görevlendirdiği ilgili mevzuat kapsamında paylaşım yapılması gerekli Sigorta Bilgi ve Gözetim Merkezi) sağlık harcamaları yönetimi hizmeti alınan firmalara, aracılara, anlaşmalı aktüere, medikal danışmana, anlaşmalı kurumlara, asistans firmalara, bilirkişilere, diğer sigorta şirketleri ile yurt içindeki ve yurt dışındaki reasürans şirketlerine, destek hizmeti alınan firmalara, bağımsız denetim şirketlerine, kurumsal müşteri çalışanı sigortalılar açısından sigorta ettirenin talebi olması halinde sigorta ettiren İnsan Kaynakları ve/veya ilgili birimine ve çeşitli hukuki ve sözleşmesel yükümlülüklerimiz sebebiyle diğer üçüncü kişilere açıklanabilecek/aktarabilecektir.
+                    <br /><br />
+                    <strong>Yurt Dışına Aktarım:</strong> Sigorta Şirketi tarafından Kişisel Verileriniz yurt dışına aktarılmamaktadır. Ancak aktarımının gerekmesi halinde, kişisel verilerin yurt dışına aktarılmasına ilişkin olarak, Kanun’un 9. maddesi doğrultusunda veri sahibinin açık rızası aranmaktadır. Ancak, özel nitelikli kişisel veriler de dâhil, kişisel verilerin veri sahibin açık rızası olmaksızın işlenmesine izin verilen şartların varlığı halinde;
+                    <br />- kişisel verinin aktarılacağı yabancı ülkede, yeterli korumanın bulunması,
+                    <br />- aktarım yapılacak olan ülkenin, Kişisel Verileri Koruma Kurulu (“Kurul”) tarafından belirlenecek olan yeterli korumanın bulunduğu ülkeler arasında yer almaması durumunda, Sigorta ve ilgili ülkedeki veri sorumlusu/veri işleyen tarafından yeterli korumayı yazılı olarak taahhüt edilmiş olması, ve/veya
+                    <br />- aktarım yapılacak tarafın Kurul tarafından uluslararası veri aktarımlarında kullanılmak üzere diğer bir yöntem olarak belirlenmiş olan “Bağlayıcı Şirket Kuralları” yükümlülüğünü sağlayan ve yine Kurul tarafından onaylanmış olması kaydıyla veri sahibinin açık rızası aranmaksızın da Sigorta Şirketi tarafından kişisel veriler yurt dışına aktarılabilecektir.
+                    <br /><br />
+                    Kişisel verilerinizin yurt dışına aktarımını gerektiren bir durum olması hâlinde; Sigorta Şirketi tarafından mutlaka öncelikle tarafınızla iletişime geçilerek, konu hakkında tarafınıza aydınlatma yapılacak ve açık rızanız sorulacaktır.
+                    <br /><br />
+                    <strong>Haklarınız:</strong> Kanun'un "ilgili kişinin haklarını düzenleyen" 11’inci maddesi uyarınca; bize yazılı olarak başvurarak kişisel verilerinizin;
+                    <br /> • işlenip işlenmediğini öğrenme,
+                    <br />• işlenmişse bilgi talep etme,
+                    <br />• yurt içinde/yurt dışında aktarıldığı 3. kişileri bilme,
+                    <br />• eksik/yanlış işlenmişse düzeltilmesini isteme, Kanun’un 7’nci maddesinde öngörülen şartlar çerçevesinde silinmesini/yok edilmesini isteme,
+                    <br />• Kanun’un 11’inci maddesinin (d) ve (e) bentleri uyarınca yapılan işlemlerin, kişisel verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme,
+                    <br />• Kanun’a aykırı olarak işlenmesi nedeniyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme ve
+                    <br />• Kanun’a aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme hakkına sahipsiniz.
+                    <br /><br />
+                    Bu haklarınız kapsamındaki soru ve taleplerinizi, bağlantıda yer alan Başvuru Formu'nu doldurmak suretiyle; kimliğinizi tevsik edici belgeler ile;
+                    <br /> i. Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ'e göre, Küçükbakkalköy Mah Başar Sk. No: 20 Ataşehir/İstanbul adresine şahsen yazılı olarak,
+                    <br />ii. Noter vasıtası ile Küçükbakkalköy Mah Başar Sk. No: 20 Ataşehir/İstanbul adresine başvuru yaparak ya da
+                    <br />iii. Güvenli elektronik imzanız ile imzalayarak kvkk@bupaacibadem.com.tr adresine göndererek
+                    <br />
+                    Bupa Acıbadem Sigorta A.Ş.’ye iletebilirsiniz.
+                    <br /><br />
+                    Başvurunuzda yer alan talepleriniz, talebin niteliğine göre en kısa sürede ve en geç 30 gün içerisinde ücretsiz olarak sonuçlandırılacaktır. Ancak işlemin Bupa Acıbadem Sigorta için ayrıca bir maliyet doğurması hâlinde; Kişisel Verilerin Korunması Kurulu tarafından belirlenecek tarifedeki ücret talep edilebilecektir.
+                    <br />Kişisel verilerle ilgili mevzuat değişikliklerinden haberdar olmak için;
+                    <br />KVKK uyarınca sahip olduğunuz haklar Bupa Acıbadem Sigorta’nın yükümlülükleridir. Kişisel verilerinizi bu bilinçle ve mevzuatın gerektirdiği ölçüde işlediğimizi, yasal değişikliklerin olması halinde sayfamızda yer alan bu bilgileri yeni mevzuata uygun güncelleyeceğimizi, yapılan güncellemeleri de bu sayfa üzerinden her zaman kolaylıkla takip edebileceğinizi size bildirmek isteriz.
+                    <br />Verinin güncel ve doğru tutulduğundan emin olmak için;<br />
+                    KVKK’nın 4‘üncü maddesi uyarınca Bupa Acıbadem Sigorta’nın kişisel verilerinizi doğru ve güncel olarak tutma yükümlülüğü bulunmaktadır. Bu kapsamda Bupa Acıbadem Sigorta’nın yürürlükteki mevzuattan doğan yükümlülüklerini yerine getirebilmesi için müşterilerimizin Şirketimiz ile doğru ve güncel verilerini paylaşması gerekmektedir. Verilerinizin herhangi bir surette değişikliğe uğraması halinde aşağıda belirtilen iletişim kanallarından bizimle iletişime geçerek verilerinizi güncellemenizi rica ederiz.
+                    <br />Bu kapsamda konuyla ilgili yapılacak olan yazılı başvurular tarafımızca yapılacak olan kimlik doğrulamasını takiben kabul edilecek olup ilgililere yasal süreler içerisinde geri dönüşte bulunulacaktır.
+                    <br />KVKK kapsamında şahsen ve yazılı olarak başvuru yapabileceğiniz veri sorumlusu:<br /><br />
+                    <table class="table table-bordered">
+                        <tr>
+                            <td width="45%">GENEL MÜDÜRLÜK</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Ticaret Unvanı</td>
+                            <td>Bupa Acıbadem Sigorta A.Ş.</td>
+                        </tr>
+                        <tr>
+                            <td>Merkez Adres</td>
+                            <td>Küçükbakkalköy Mah. Başar Sokak No: 20 34750 Ataşehir - İstanbul</td>
+                        </tr>
+                        <tr>
+                            <td>Ticaret Sicil No</td>
+                            <td>343360</td>
+                        </tr>
+                        <tr>
+                            <td>Mersis No</td>
+                            <td>0153003619800017</td>
+                        </tr>
+                        <tr>
+                            <td>Telefon</td>
+                            <td>0 216 570 55 55</td>
+                        </tr>
+                        <tr>
+                            <td>İnternet Adresi</td>
+                            <td>
+                                <a href="https://www.bupaacibadem.com.tr" target="_blank">www.bupaacibadem.com.tr</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="uyari1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">
+                        <img src="~/img/uyari1.png" width="64" />
+                    </p>
+                    <p class="UyariMesaj">
+                        Girmiş olduğunuz bilgiler neticesinde işlemlerinize devam edemiyoruz. Dilerseniz 0216 570 55 55 numaralı Dijital Satış kanalımız ile iletişime geçebilirsiniz. İlginize teşekkür eder, sağlıklı günler dileriz.
+                    </p>
+                </div>
+                <div class="modal-footer tect-center">
+                    <button type="button" class="btn btn-next" data-dismiss="modal">Tamam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="devam-edemiyoruz2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">
+                        <img src="~/img/uyari1.png" width="64" />
+                    </p>
+                    <p class="UyariMesaj">
+                        Girmiş olduğunuz bilgiler neticesinde işlemlerinize devam edemiyoruz. Dijital satış kanalımız en kısa sürede iletişime geçecektir. İlginize teşekkür eder, sağlıklı günler dileriz.
+                    </p>
+                </div>
+                <div class="modal-footer tect-center">
+                    <button type="button" class="btn btn-next" data-dismiss="modal">Tamam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="devam-edemiyoruz1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">
+                        <img src="~/img/uyari1.png" width="64" />
+                    </p>
+                    <p class="UyariMesaj" id="UyariMesaji">
+
+                    </p>
+                </div>
+                <div class="modal-footer tect-center">
+                    <button type="button" class="btn btn-next" data-dismiss="modal">Tamam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="sikca-sorulan-sorular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Sıkça Sorulan Sorular</h2>
+                    <h3>1. senCard Market üzerinden Tamamlayıcı Sağlık Sigortası satın alma sürecimi tamamladıktan sonra poliçe bilgilerime nasıl ulaşabilirim?</h3>
+                    <p>
+                        senCard Market üzerinden poliçe satın alma işlemi gerçekleştirildikten hemen sonra, satın alma adımında kaydettiğiniz cep telefonunuza “Hoş geldin SMS’i” ve E-posta adresinize poliçe bilgileriniz iletilecektir.
+                        <br /><br />Tüm bunlara ek olarak dilediğiniz zaman <a href="https://www.sencard.com.tr/mobil" target="_blank">senCard Mobil</a> ve <a href="https://www.sencard.com.tr/webSen/" target="_blank">websen</a> üzerinden poliçe bilgilerinize ulaşılabilirsiniz.
+                    </p>
+                    <h3>2. Poliçemin geçerli olduğu Anlaşmalı Kurum Ağı’nda yer alan sağlık kurumları bilgisine nasıl ulaşabilirim?</h3>
+                    <p>Poliçenizin geçerli olduğu ve hizmet alabileceğiniz kurumlara <a href="https://www.sencard.com.tr/sik-kullanilanlar/medikal-hizmet-agi" target="_blank">https://www.sencard.com.tr/sik-kullanilanlar/medikal-hizmet-agi </a> üzerinden ulaşabilirsiniz.</p>
+
+                    <h3>3. Online Tamamlayıcı Sağlık Sigortası ile ilgili bir sorum olursa kime danışacağım?</h3>
+                    <p>senCard Market üzerinden gerçekleştirdiğiniz tüm işlemlerinizde 0216 570 55 55 no’lu Dijital Satış Kanalımızdan hafta içi her gün 08:30 – 17:30 saatleri arasında detaylı bilgi alabilirsiniz.</p>
+                    <h3>4. Online satın alma sürecime devam edemiyorum. Neden Dijital Satış Danışmanına yönlendirildim?</h3>
+                    <p>Gerçekleştirdiğiniz işlemleriniz ile ilgili Dijital Satış Danışmanınız’dan detaylı bilgi alabilirsiniz.</p>
+                    <h3>5. Neden Online Tamamlayıcı Sağlık Sigortası Yaptırmalıyım?</h3>
+                    <p>
+                        Genel Sağlık Sigortası kapsamında alınan hizmetler için, anlaşmalı özel sağlık kuruluşlarında herhangi bir işlem farkı ödemeden, sağlık güvencesine sahip olmak istiyorsanız; senCard Market üzerinden sadece 5 adımda Tamalayıcı Sağlık Sigortasına sahip olabilirsiniz.
+                        <br /><br />
+                        Bütçenize uygun ödeme seçenekleri, ihtiyacınıza uygun medikal hizmet ağınızı kendi seçimlerinize göre düzenleyebilir, boynerden hediye çeki ve tüm bunlara ek olarak sencard üyelik programının bir üyesi olarak benzersiz ayrıcalıklı hizmetlerden faydalanabilirsiniz.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="~/js/vendor/jquery-3.5.1.min.js"></script>
+    <!-- <script src="~/js/vendor/jquery.slim.min.js"></script> -->
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <script src="~/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/static.js"></script>
+    <script src="~/js/advance.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/login.js"></script>
+    <script src="~/js/jsuites.js"></script>
+    <script src="~/js/jquery.validate.tcno.js"></script>
+    <script src="~/js/first.js"></script>
+
+    <!-- Recaptcha -->
+    @*<script src="https://www.google.com/recaptcha/api.js" async defer></script>*@
+    <script>
+        //function recaptchaReady() {
+        //    grecaptcha.render('myrecaptcha', {
+        //        'sitekey': '6LedK10aAAAAAKvTfopfzGhI31jNstj4M9h8RrTf',
+        //        'expired-callback': function () {
+        //            grecaptcha.reset();
+        //            $captcha.addClass("error");
+        //        }
+        //    });
+        //}
+
+        //$('#dogumtar').datepicker({
+        //    format: 'dd.mm.yyyy',
+        //    startDate: '-3d'
+        //});
+    </script>
+
+    @*<script src="https://www.google.com/recaptcha/api.js?onload=recaptchaReady&&render=explicit"></script>*@
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNHVTJRX7R"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NNHVTJRX7R');
+    </script>
+
+</body>
+</html>

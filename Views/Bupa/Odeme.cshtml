@@ -1,0 +1,946 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>senCard Market</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/css/sencard.css" rel="stylesheet" />
+    <link href="~/css/card.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS -->
+    <link href="~/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="~/img/favicon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+<body class="d-flex flex-column h-100">
+<div id="loaderBG" style="display: none">
+    <div id="loader"></div>
+</div>
+
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md fixed-top">
+        <a class="navbar-brand" href="/"></a>
+
+
+        <div class="nav-right">
+
+            <a class="Cagri-Merkezi" href="#">
+                <span>
+                    <img src="~/img/phone.png"/> 0216 570 55 55
+                    <p class="saatler">Hafta içi her gün 08.30 - 17.30 </p>
+                </span>
+
+            </a>
+            <a class="Soru-Cevap" href="#" data-toggle="modal" data-target="#sikca-sorulan-sorular" title="Soru & Cevap">
+                <img src="~/img/ask.png"/> <span class="SText">Soru & Cevap</span>
+            </a>
+        </div>
+    </nav>
+</header>
+
+<!--Header ./-->
+<!-- Contents -->
+<section class="Contents">
+<div class="container">
+<div class="row">
+    <ul class="steps">
+        <li class="step step-active ">
+            <div class="step-content">
+                <span class="step-text">Giriş</span>
+                <a href="/" data-toggle="tooltip" data-placement="top" title="Sayfaya geçiş yapınca bilgilerinizi yeniden girmeniz gerekir.">
+                    <span class="step-circle"></span>
+                </a>
+            </div>
+        </li>
+        <li class="step step-active">
+            <div class="step-content">
+                <span class="step-text">İletişim Bilgisi</span>
+                <a href="/Bupa/IletisimBilgileri" data-toggle="tooltip" data-placement="top" title="Sayfaya geçiş yapınca bilgilerinizi yeniden girmeniz gerekir.">
+                    <span class="step-circle"></span>
+                </a>
+            </div>
+        </li>
+        <li class="step step-active">
+            <div class="step-content">
+                <span class="step-text">Sağlık Bilgisi</span>
+                <a href="/Bupa/SaglikBilgileri" data-toggle="tooltip" data-placement="top" title="Sayfaya geçiş yapınca bilgilerinizi yeniden girmeniz gerekir.">
+                    <span class="step-circle"></span>
+                </a>
+            </div>
+        </li>
+        <li class="step step-active">
+            <div class="step-content">
+                <span class="step-text">Paket Seçimi</span>
+                <a href="/Bupa/PaketSecimi" data-toggle="tooltip" data-placement="top" title="Sayfaya geçiş yapınca bilgilerinizi yeniden girmeniz gerekir.">
+                    <span class="step-circle"></span>
+                </a>
+            </div>
+        </li>
+        <li class="step step-active">
+            <div class="step-content">
+                <span class="step-text">Ödeme</span>
+                <span class="step-circle"></span>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="bupa-logo">
+    <a href="https://www.bupaacibadem.com.tr/" target="_blank">
+        <img src="~/img/bupa-logo.png"/>
+    </a>
+</div>
+<h1 class="mt-5">Size en uygun <span>tamamlayıcı sağlık sigortası</span></h1>
+<h3>
+    Teklifiniz 14 gün boyunca geçerli olup <span id="gecerlilikTarih"></span> tarihinde sona erecektir.
+</h3>
+
+<div class="row">
+    <div class="col-md-4 order-md-2 mb-4">
+        <!--Özet-->
+        <div class="HesapOzeti">
+            <div class="panel-group" id="accordionOdeme">
+                <div class="panel panel-default" id="panel1">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-target="#collapseM"
+                               href="#collapseM">
+                                <span class="Baslik">
+                                    Yatarak ve Ayakta
+                                    Tedavi
+                                </span>
+
+                            </a>
+                        </h4>
+                        <hr class="hr1"/>
+                        <h3 class="fiyat1">
+                            @*%5 fazlası
+                                            ₺ <small>/ yıllık </small>*@
+                        </h3>
+                        <h3 class="fiyat">
+                            1.250 ₺ <small style="padding-right:10px">/ yıllık </small>
+                            <img src="~/img/bilgi-beyaz.png" width="20" data-toggle="tooltip" data-placement="top" style="padding-right:7px" title="Peşin ödemelerde %5 indirim fırsatı!"/>
+                        </h3>
+
+                    </div>
+                    <div id="collapseM" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <span class="YatarakT">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="HediyeCek">
+                <span id="hediyeceki-tutar"> Güvencenize ek Boyner’den 50 TL’lik HEDİYE ÇEKİ</span>
+                <img src="~/img/bilgi-beyaz.png" width="15" title="Poliçe başlangıç tarihinizden 30 gün sonra hediye çeki kodunuz cep telefonuna SMS ile paylaşılır." data-toggle="tooltip" data-placement="top"/>
+            </div>
+            <div class="odemes">
+                <button class="OdemeYap" type="submit">ÖDEME YAP</button>
+            </div>
+        </div><!--Özet./-->
+
+    </div>
+
+
+    <div class="col-md-8 order-md-1 Paymentform">
+        <h4 class="mb-3">Poliçe Özeti</h4>
+        <div class="row" id="PoliceOzet">
+
+            <div class="col-md-6">
+                <small>Poliçe Başlangıç - Bitiş</small>
+                <p id="basBitTar">22.01.2021 - 21.01.2022</p>
+            </div>
+            <div class="col-md-6">
+                <small></small>
+                <p id="PaymentCustomer"></p>
+            </div>
+        </div>
+        <h4 class="mb-3">Güvenli Ödeme</h4>
+        <div class="row">
+
+            <div class="col-xs-12 col-md-6">
+                <form id="odeme-form" class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="cc-name">Kart numarası</label>
+                            <input type="tel" id="input-cardnumber" name="number" data-mask="0000-0000-0000-0000" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" class="form-control" required>
+
+                            <div class="invalid-feedback">
+                                Lütfen kart numarasınız giriniz.
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-12 mb-3">
+                            <label for="cc-name">Kart üzerindeki isim</label>
+                            <input type="text" id="input-cardowner" name="name" class="form-control" minlength="3" required>
+                            <div class="invalid-feedback">
+                                Lütfen kartınızın üzerinde yer alan ismi giriniz..
+                            </div>
+                        </div>
+                        <div class=" col-xs-12 col-md-6 mb-3">
+                            <label for="cc-name">Son kullanma tarihi</label>
+                            <input id="input-cardexpiry" placeholder="AA/YYYY" type="tel" name="expiry" data-mask="00/0000" pattern="[0-9]{2}/[0-9]{4}" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Lütfen kartınızın son kullanma tarihini giriniz.
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 mb-3">
+                            <label for="cc-name">Güvenlik kodu</label>
+                            <input id="input-cardcvc" placeholder="CVC" type="tel" name="cvc" class="form-control" data-mask="000" minlength="3" pattern=".{3,}" required>
+                            <div class="invalid-feedback">Lütfen kartınızın güvenlik kodunu (CVV) giriniz.</div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-12 py-3">
+                            <div class="3ddd" style="float:left;width:100%; margin-bottom:25px;">
+
+                                <div class="3dsecures" style="background: #00aeef; border-radius: 4px; width: 18px; height: 18px; float: left; margin-right: 8px;"></div> <span style="float:left; width:80px">3D SECURE </span> <img src="~/img/visamaster.jpg" style="float:left; width:185px; margin-left:10px; margin-top:-5px;"/>
+
+                            </div>
+                            <label for="state">Ödeme Türü</label>
+                            <select class="custom-select" id="OdemeTuru" required>
+                                <option value="0">Seçiniz</option>
+                            </select>
+                            <div id="odeme-select-uyari" class="invalid-feedback">Ödeme türü seçiniz</div>
+                        </div>
+                        <div style="display: none;" class="col-md-12 taksitTablo">
+                            <table class="table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Taksitler</th>
+                                    <!-- <th>Aylar</th> -->
+                                    <th>Tutar</th>
+                                </tr>
+                                </thead>
+                                <tbody id="tbody-taksitTablo">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-12 py-3">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="mesafeli" required>
+                                <label class="custom-control-label" for="mesafeli" style="color:#414141">
+                                    <a data-toggle="modal"
+                                       data-target="#mesafeli-satis">
+                                        <strong>Mesafeli Satış Sözleşmesi</strong>
+                                    </a>’ni okudum ve onaylıyorum.
+                                </label>
+                                <div class="invalid-feedback">
+                                    Lütfen Mesafeli Satış Sözleşmesini onaylayınız.
+                                </div>
+                            </div>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="mesafelii" required>
+                                <label class="custom-control-label" for="mesafelii" style="color:#414141">
+                                    <a data-toggle="modal"
+                                       data-target="#on-bilgilendirme">
+                                        <strong>Ön Bilgilendirme Formu</strong>
+                                    </a>’nu okudum ve onaylıyorum.
+                                </label>
+                                <div class="invalid-feedback">
+                                    Lütfen Ön Bilgilendirme Formunu onaylayınız.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <button class="OdemeYap" type="button" id="OdemeYapBtn">Ödeme Yap</button>
+
+            </div>
+            <div class="col-md-6 float-left">
+                <div class="card-wrapper"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+</section>
+<!-- Contents ./-->
+<!--Footer ./-->
+<footer class="footer py-3">
+    <div class="col-md-12">
+        <span class="text-muted">© senCard 2021</span>
+        <div class="socials">
+            <a href=" https://www.facebook.com/sencardofficial/" target="_blank">
+                <img src="~/img/facebook.png"/>
+            </a>
+            <a href="https://jm.linkedin.com/company/sencard" target="_blank">
+                <img src="~/img/linkedin.png"/>
+            </a>
+            <a href="https://www.instagram.com/sencard/" target="_blank">
+                <img src="~/img/instagram.png"/>
+            </a>
+            <a href="https://twitter.com/sencardofficial" target="_blank">
+                <img src="~/img/twitter.png"/>
+            </a>
+            <a href="https://www.youtube.com/c/SenCardOfficial" target="_blank">
+                <img src="~/img/youtube.png"/>
+            </a>
+        </div>
+    </div>
+
+</footer>
+<!--Footer ./-->
+<div class="modal fade bd-example-modal-lg" id="mesafeli-satis" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <strong>MESAFELİ SATIŞ SÖZLEŞMESİ </strong><br/><br/>
+                <strong> MADDE 1: TARAFLAR</strong> <br><br>
+                İşbu Mesafeli Satış Sözleşmesi (“Sözleşme”) Bupa Acıbadem Sigorta A.Ş. (“SATICI ve/veya “Sigorta Şirketi”) internet sitesi üzerinden sigorta ürünü satın almak isteyen ALICI ile SATICI arasında aşağıdaki hüküm ve koşullar dahilinde Finansal Hizmetlere İlişkin Mesafeli Sözleşmeler Yönetmeliği’ne uygun olarak akdedilmiştir.
+                <br><br><strong> i. SATICI</strong>
+                <br><br>Satıcı Unvanı: Bupa Acıbadem Sigorta A.Ş.
+                <br>Satıcının Açık Adresi: Küçükbakkalköy Mah. Başar Sokak No:20 34750 Ataşehir – İstanbul
+                <br>Satıcının Telefonu: 0216 5715555
+                <br>Satıcı Mersis No: 0153003619800017
+                <br>Satıcı E-Posta Adresi : <a href="mailto:mim@sencard.com.tr">mim@sencard.com.tr</a>
+                <br><br>
+                <strong>ii. ALICI</strong> <br><br>
+                www.sencard.com.tr web sitesi üzerinden sigorta ürünü satın alan kişidir.
+                <br><br>
+
+                ALICI ve SATICI ayrı ayrı “Taraf” birlikte “Taraflar” olarak anılacaktır.
+                <br><br> <strong> MADDE 2: KONU</strong> <br><br>
+                2.1 İşbu Sözleşme’nin konusu, sigorta ürünlerine ilişkin teklif, poliçe ve elektronik ortamda mesafeli olarak satış hizmetiyle ilgili Tarafların 6502 sayılı Tüketicinin Korunması Hakkında Kanun Mesafeli Sözleşmeler Yönetmeliği, 28982 sayılı Sigortacılık Kapsamında Değerlendirilecek Faaliyetlere, Tüketici Lehine Yapılan Sigorta Sözleşmeleri İle Mesafeli Akdedilen Sigorta Sözleşmelerine İlişkin Yönetmelik (beraber “Mevzuat” olarak anılacaktır) çerçevesinde hak ve yükümlülüklerin belirlenmesidir.
+                <br>2.2 Her halükarda ALICI, işbu Sözleşme’yi okuduğunu ve kabul ettiğini onaylamadan, sonraki adımlara geçemeyecek ve poliçe teklifi ve elektronik ortamda mesafeli olarak sigorta ürünü satın alım işlemlerini gerçekleştiremeyecektir.
+                <br><br>
+                <strong> MADDE 3: SATIŞA KONU ÜRÜN/ÜRÜNLER, ÖDEME BİLGİLERİ VE TESLİMAT</strong> <br><br>
+                3.1 Ürünün özelliklerine (cinsi ve türü) ilişkin bilgiler her sigorta ürününün türüne göre değişiklik göstermekte olup, ürün seçildiğinde ürünün bedeli kullanıcı ekranında görüntülenmektedir. Bu bilgiler ALICI tarafından da onaylanmıştır.
+                <br><br> Ödeme Şekli: Sadece Kredi Kartı ile ödeme kabul edilmektedir.
+                <br><br>3.2 Satın alınan sigorta ürününe dair poliçeyi ALICI pdf formatında www.sencard.com.tr internet sitesinden indirebilecektir. Ayrıca SATICI tarafından, ALICI’nın bildirmiş olduğu elektronik posta adresine de poliçe gönderecektir. ALICI tarafından verilen elektronik posta adresinin yanlış olmasından veya başkasına ait olmasından dolayı poliçenin ulaşmaması durumunda; ALICI, SATICI’dan herhangi bir talepte bulunamayacağını kabul, beyan ve taahhüt eder.
+                <br><br>ALICI, poliçe’nin adresine fiziken de teslim edilmesini talep ederse, teslimat masrafı ALICI’ya ait olacaktır.
+                <br><br>
+                <strong> MADDE 4: SÖZLEŞME TARİHİ</strong>
+
+                <br><br> İşbu Sözleşme ALICI’nın seçtiği sigorta türüne göre yapması gereken ödemeyi yaptığı anda akdedilmiş sayılır.
+
+                <br><br><strong> MADDE 5: GENEL HÜKÜMLER</strong>
+                <br><br>5.1 ALICI, “www.bupaacibadem.com.tr” internet sitesinde Sözleşme konusu ürünün tüm özelliklerine, temel nitelikleri, kapsadığı rizikoları bildiğini, satış fiyatı ve ödeme şekli ile teslimata ilişkin ön bilgileri okuyup bilgi sahibi olduğunu ve elektronik ortamda gerekli teyidi verdiğini kabul, beyan ve taahhüt eder.
+                <br><br>5.2 ALICI, işbu Sözleşme çerçevesinde verdiği kişisel bilgilerin doğru olduğunu beyan ve taahhüt eder. Kişisel bilgilerin doğruluğundan ALICI sorumludur. SATICI’nın bu bilgilerin doğru olmaması nedeniyle uğrayacağı tüm zararlardan ALICI sorumludur.
+                <br><br>5.3 ALICI, doğruluğu, güncelliği ve verdiği bilgilerin kendisine ait olduğu veya üçüncü kişilere ait olmakla birlikte sigorta ürünü satın alabilmek veya üçüncü kişileri lehdar olarak göstermek üzere gerekli açık rızanın kendisi tarafından alınmış olduğunu, bu bilgilerle ilgili olarak bir ihlal ortaya çıkması ve SATICI’nın bu ihlal nedeniyle bir zarar görmesi durumunda SATICI’nın zararlarını nakden ve defaten tazmin edeceğini kabul, beyan ve taahhüt eder.
+                <br><br>5.4 Sözleşme’ye konu sigorta ürününe ait korumanın başlamış sayılması için işbu Mesafeli Satış Sözleşmesi ile Ön Bilgilendirme Formu’nun elektronik ortamda teyit edilmiş olması ve ürün/ürünlerin bedelinin ALICI tarafından kredi kartı ile ödenmiş olması şarttır. Herhangi bir nedenle ürün/ürünlerin bedeli ödenmez veya banka kayıtlarında iptal edilir ise, Taraflar arasında bir sigorta sözleşmesinin kurulmamış olacağını Taraflar kabul, beyan ve taahhüt eder.
+                <br><br>5.5 Sözleşme’ye konu ürüne/ürünlere ilişkin ödemenin ALICI tarafından kredi kartı ile yapılması durumunda, ALICI ile kredi kartı sahibinin ya da ürünün/ürünlerin teslim edileceği kişinin farklı olmasından kaynaklanabilecek olan, kredi kartının veya banka kartının yetkisiz kişilerce haksız ve hukuka aykırı olarak kullanılması da dahil olmak üzere türlü hukuki risk, ALICI’ya aittir. ALICI, bahsi geçen durumlarda herhangi bir şekilde zarara uğraması halinde SATICI’dan hiçbir talepte bulunmayacağını kabul, beyan ve taahhüt eder.
+                <br><br>5.6 ALICI, “www.sencard.com.tr” internet sitesi üzerinden kredi kartı gerektiren işlemlerde, kullanılan kredi kartının kendisine ait olmaması halinde kredi kartı malikinin rızası ile işlem yapacağını; aksi halde ödeme iadesi, hizmeti ifa etmeme veya benzeri sebeplerden kaynaklanabilecek ve SATICI nezdinde doğabilecek avukatlık masrafları da dâhil olmak üzere her türlü masraflardan ve zarardan münhasıran terk başına sorumlu olacağını ve SATICI’yı bunlardan kaynaklanabilecek her türlü talepten âri tutacağını peşinen kabul, beyan ve taahhüt eder.
+                <br><br>5.7 ALICI, spam, virüs, Truva atı ve bunlarla sınırlı olmaksızın benzeri diğer kötü niyetli yazılımlar ile İnternet Sitesi’nin çalışmasını durdurucu veya engelleyici iş, işlem veya eylemlerde bulunmayacağını veya bu yönde iş, işlem veya eylemlerde bulunan üçüncü kişilerle herhangi bir ilişki içerisinde olmayacağını kabul, beyan ve taahhüt eder.
+                <br><br>5.8 ALICI, işbu Sözleşme konusu sigorta poliçesini aldığı an itibariyle düzenlemesini talep ettiği poliçenin klozlarını kontrol etmeyi kabul ve taahhüt eder. ALICI, Ön Bilgilendirme Formu ve işbu Mesafeli Satış Sözleşmesi’ni web sencard.com.tr üzerinden gerçekleştirilen teklif/satış adımlarında görüntüler, onaylar ve bir suretini kaydedebilir.
+                <br><br>5.9 ALICI’ya ait kredi kartının alıcının kusurundan kaynaklanmayan bir şekilde yetkisiz kişilerce haksız veya hukuka aykırı kullanılması nedeniyle banka veya finans kuruluşunun prim bedelini SATICI’ya ödememesi halinde sigorta sözleşmesi hükümlerini doğurmaya başlamayacak ve kendiliğinden geçersiz hale gelecektir.
+                <br><br>5.10 SATICI tarafından sağlanacak hizmetin kapsamı, geçerlilik süresi ifası ve sona ermesine ilişkin tüm koşullar işbu Sözleşme eki niteliğindeki poliçe kapsamında düzenlenmektedir.
+                <br><br>5.11 ALICI, işbu Sözleşme ile satın aldığı hizmeti yasadışı amaçlar için kullanmayacağını kabul ve taahhüt eder. Aksi halde doğabilecek tüm hukuki ve cezai sorumluluk ALICI’ya ait olmakla beraber üçüncü kişiler veya yetkili merciler tarafından SATICI’ya karşı ileri sürülebilecek tüm iddia ve taleplere karşı, SATICI’nın söz konusu izinsiz kullanımdan kaynaklanan her türlü tazminat vesair talep hakkı saklıdır
+                <br><br>
+                <strong> MADDE 6: CAYMA HAKKI ve İSTİSNALARI</strong>
+
+
+                <br><br> 6.1 ALICI, Sözleşme’nin imzalandığı tarihten itibaren 14 (ondört) gün içinde herhangi bir gerekçe göstermeksizin ve cezai şart ödemeksizin sözleşmeden cayma hakkına sahiptir. İşbu 14 (ondört) günlük süre, tüketicinin sözleşmenin imzalandığı günden itibaren başlar. ALICI, cayma hakkının kullanılması için bu süre içinde SATICI’ya aşağıda detayları belirtilen iletişim bilgileri vasıtasıyla yazılı olarak bildirimde bulunmak zorundadır.
+                <br><br>6.2 ALICI’nın tüketici olmadığı durumlarda bu cayma hakkını kullanma hakkı bulunmamaktadır. Tüketici olmayan ALICI ancak TTK md. 1430(3)’e göre cayabilir. Buna göre sigorta ettiren sigorta şirketinin sorumluluğu başlamadan önce, kararlaştırılmış primin yarısını ödeyerek sözleşmeden cayabilir. Sözleşme’den kısmi cayma halinde sigorta ettirenin ödemekle yükümlü olduğu prim, cayılan kısma ilişkin primin yarısıdır. ALICI tüketici sigortalı ise Tüketici Mevzuatından kaynaklanan hakkının yanında dilerse bu hakkını da kullanması mümkündür.
+                <br><br>6.3 ALICI, aşağıdaki sözleşmelerde cayma hakkını kullanamaz:
+                <br><br>a) Aşağıda sayılan hususlar başta olmak üzere, bedeli finansal piyasadaki dalgalanmalara bağlı olarak sağlayıcının kontrolü dışında değişen ve bu değişimin cayma hakkı süresi içinde gerçekleşebildiği finansal hizmetlere ilişkin sözleşmeler:
+                <br>1) Döviz işlemleri.
+                <br>2) Para piyasası araçları.
+                <br>3) Devredilebilir menkul kıymetler.
+                <br>4) Yatırım ortaklığı payları.
+                <br>5) Finansal varlıklara dayalı vadeli işlem sözleşmeleri ve eşdeğer nakdi uzlaşmaya dayalı finansal araçlar.
+                <br>6) Vadeli faiz oranı anlaşmaları.
+                <br>7) Faiz, döviz ve hisse senedi swapları.
+                <br>8) Opsiyon işlemleri ve eşdeğer nakdi uzlaşmaya dayalı finansal araçlar.
+                <br>b) Diğer mevzuatta yer alan ALICI lehine olan hükümler saklı kalmak kaydıyla, geçerlilik süresi bir aydan az olan seyahat, bagaj sigortası poliçeleri veya benzeri kısa süreli sigorta poliçelerine ilişkin sözleşmeler.
+                <br>c) ALICI’nın cayma hakkını kullanmasından önce, onun açık onayı üzerine taraflarca tamamen ifa edilmiş olan sözleşmeler
+                <br><br>
+                <strong> MADDE 7: CAYMA HAKKININ KULLANIMI </strong>
+                <br><br>7.1 Cayma hakkının kullanıldığına dair bildirimin cayma hakkı süresi içinde, yazılı olarak veya kalıcı veri saklayıcısı ile SATICI’ya yöneltilmiş olması yeterlidir.
+                <br>Cayma hakkı kullanılmak istenildiğinde mim@sencard.com.tr veya (216) 571 55 55 numaralı telefon üzerinden iletişime geçilerek iletilmelidir.7.2 İnternet sitesi üzerinden tüketiciye cayma hakkı sunulması durumunda SATICI, ALICI’nın cayma taleplerinin kendisine ulaştığına ilişkin teyit bilgisini, ALICI’ya derhal iletmek zorundadır.
+                <br><br><strong> MADDE 8: CAYMA HAKKINDA SATICI’NIN YÜKÜMLÜLÜKLERİ</strong>
+                <br><br> 8.1 SATICI, cayma hakkının kullanıldığına ilişkin bildirimin kendisine ulaştığı tarihten itibaren otuz gün içinde, Finansal Hizmetlere İlişkin Mesafeli Sözleşmeler Yönetmeliği’nin 11. maddesinin 1. fıkrasında belirtilen masraf ve bedeller hariç tüm ödemeleri ALICI’ya iade etmekle yükümlüdür. Sigortaya ilişkin sözleşmelerde ise iade süresi hakkında diğer mevzuatta yer alan ALICI lehine olan hükümler uygulanır.
+                <br>8.2 SATICI, birinci fıkrada belirtilen tüm geri ödemeleri, ALICI’nın satın alırken kullandığı ödeme aracına uygun bir şekilde ve tüketiciye herhangi bir masraf veya yükümlülük getirmeden tek seferde yapacaktır.
+                <br>8.3 ALICI’nın Sözleşme’nin kurulmasına dair kabul beyanı kullanılan iletişim araçlarına uygun olarak fiziki veya elektronik ortamda tespit veya kayıt edilir. SATICI, cayma hakkının iletilmesi ile fiziki veya elektronik ortamda yapılacak tespit veya kayıtlar için gerekli önlemleri almakla yükümlüdür.
+                <br><br><strong> MADDE 9: CAYMA HAKKINDA ALICI’NIN YÜKÜMLÜLÜKLERİ</strong>
+                <br><br>9.1 ALICI, cayma bildirimini yönelttiği tarihten itibaren en geç otuz gün içinde sözleşme ve yan sözleşme uyarınca ifa edilen hizmet bedelleri ile varsa bir kamu kurum veya kuruluşuna ya da üçüncü kişilere ödenmiş olan masraflar ile mevzuat gereği ödenmesi zorunlu olan bedelleri sağlayıcıya iade etmekle yükümlüdür Bu süre içinde ALICI’nın gerekli iade ve ödemeleri yapmaması halinde Sözleşmeden caymadığı kabul edilir.
+                <br>
+                <br><br>9.2 Ödenmesi gereken bedel Sözleşme’de öngörülen hizmetin toplam bedeli ile karşılaştırıldığında, hizmetin ifa edilen payına düşen miktarını aşamaz ve herhangi bir şekilde cezai şart olarak yorumlanamaz. Bu fıkranın uygulanmasında diğer mevzuatta yer alan ALICI lehine olan hükümler saklıdır.
+                <br><br><strong> MADDE 10: CAYMA HAKKININ KULANIMININ YAN SÖZLEŞMELERE ETKİSİ</strong>
+
+                <br><br>10.1 ALICI’nın cayma hakkını kullanması halinde, varsa yan sözleşmeler de, herhangi bir tazminat veya cezai şart ödeme yükümlülüğü söz konusu olmaksızın sona erer.
+                <br>10.2 SATICI, ALICI’nın cayma hakkını kullandığını yan sözleşmenin tarafı olan üçüncü kişiye yazılı olarak veya kalıcı veri saklayıcısı ile derhal bildirir.
+                <br>Cayma Hakkına Dair Bildirimin yapılacağı İletişim Bilgileri;
+                <br><br><strong> BUPA ACIBADEM SİGORTA ANONİM ŞİRKETİ</strong>
+                <br>MERSİS NO: 0153003619800017
+                <br>Adres: Küçükbakkalköy Mah. Başar Sok. No:20 34750 ATAŞEHİR / İSTANBUL
+                <br>Telefon: 02165715555
+                <br>Faks: 02165715556
+                <br>Eposta Adresi: mim@sencard.com.tr
+                <br>KEP Adresi: bupaacibadem@hs02.kep.tr
+                <br><br>ALICI, yurtdışı seyahat vb. zorunlu bazı sigorta ürünlerinde getirilebilecek yasal gereklilikler nedeniyle ve hali hazırda www.sencard.com.tr sitesinde de yayınlanan Sağlık Sigortası genel şartlarında belirtilen hususlarda ve bu hususların gerçekleşmemesi halinde cayma hakkının kullanılamayacağını bildiğini kabul, beyan ve taahhüt eder.
+                <br><br><strong>MADDE 11: MÜCBİR SEBEPLER</strong>
+                <br>11.1. Taraflar’ın kontrolü ve iradesi dışında gelişen ve makul denetim gücü dışında kalan ve Taraflar’ın işbu Sözleşme ile yüklendiği borçlarını yerine getirmelerini engelleyici ve/veya geciktirici önceden tahmin edilmesi mümkün olmayan, sayılanlarla sınırlı olmak kaydı ile; savaş, iç savaş, terör eylemleri, deprem, yangın, sel benzeri tabi afetlerin meydana gelmesi, siber saldırılar ve hacking (siber) saldırıları mücbir sebep olarak değerlendirilecektir.
+                <br>11.2. Taraflardan biri, bir mücbir sebep ortaya çıktığında zaman kaybetmeksizin bunu derhal diğer tarafa bildirmek zorundadır. Böyle bir durumla karşılaşılması halinde Taraflar birlikte değerlendirme yaparak alınacak tedbirleri beraberce tespit edecek ve uygulayacaklardır.
+                <br>11.3. Taraflar mücbir sebep yüzünden yükümlülüklerini tam veya zamanında yerine getirememekten dolayı sorumlu tutulmayacaktır, mücbir sebep durumunun kesintisiz 30 (otuz) gün devam etmesi halinde işbu Sözleşme kendiliğinden münfesih hale gelecektir. Ancak Tarafların fesihten önce tahakkuk eden hak ve alacakları saklı kalacaktır.
+                <br><br><strong>MADDE 12: UYUŞMAZLIKLARIN ÇÖZÜMÜ VE YETKİLİ MAHKEME</strong>
+                <br>12.1 İşbu Mesafeli Satış Sözleşmesi'nin şartlarının yorumlanmasında ve/veya şartlarının uygulanmasında Taraflar arasındaki çıkabilecek uyuşmazlıkların çözümünde Ticaret Bakanlığınca ilan edilen değere kadar Alıcının Mal veya Hizmeti satın aldığı ve ikametgâhının bulunduğu yerdeki Tüketici Hakem Heyetleri ile Tüketici Mahkemeleri yetkilidir. 6502 Sayılı Tüketicinin Korunması Hakkında Kanun'un 68'nci. Maddesinin 1. fıkrasında belirtilen alt ve üst limitler doğrultusunda tüketici talepleri hakkında ilçe/il tüketici hakem heyetleri yetkilidir.
+                <br>12.2 Tüketici sıfatını haiz olmayan ALICI için, taraflar arasında işbu Sözleşme’den doğabilecek uyuşmazlıkların çözümünde İstanbul Anadolu (Kartal) Mahkemeleri ve Anadolu İcra Müdürlükleri yetkilidir.
+                <br>İşbu Mesafeli Satış Sözleşmesi elektronik ortamda Taraflarca okunup, kabul edilip, teyit edilmiştir.
+                <br><br><strong>MADDE 13: BİLDİRİMLER VE DELİL SÖZLEŞMESİ</strong>
+                <br><br>İşbu Sözleşme tahtında Taraflar arasında yapılacak her türlü yazışma, Tarafların giriş kısmında bildirilen posta adresleri ve elektronik posta adresleri üzerinden yapılacaktır.
+                <br><br>ALICI, işbu Sözleşme’den doğabilecek ihtilaflarda SATICI’nın resmi defter ve ticari kayıtlarıyla, kendi veritabanında, sunucularında tuttuğu elektronik bilgilerin ve bilgisayar kayıtlarının, bağlayıcı, kesin ve münhasır delil teşkil edeceğini, bu maddenin Hukuk Muhakemeleri Kanunu’nun 193. maddesi anlamında delil sözleşmesi niteliğinde olduğunu kabul, beyan ve taahhüt eder.
+                <br><br><strong>MADDE 14: YÜRÜRLÜK ve SON HÜKÜMLER</strong>
+                <br><br>14.1 14 (ondört) maddeden ibaret bu Sözleşme, Taraflarca okunarak, yukarıda madde 4’de tanımlanan tarihte, ALICI tarafından elektronik ortamda onaylanmak suretiyle akdedilmiş ve yürürlüğe girmiştir.
+                <br>14.2 ALICI, işbu Sözleşmeyi onaylamakla BUPA Acıbadem Sigorta A.Ş’nin isim, unvan, açık adres, telefon ve diğer erişim bilgileri, satışa konu sigorta ürününün temel nitelikleri, vergiler dâhil olmak üzere satış fiyatı, ödeme şekli, teslimat ve iade koşulları ve masrafları vs. satışa konu mal ile ilgili tüm ön bilgiler ve “cayma” hakkının kullanılması ve bu hakkın nasıl kullanılacağı, şikâyet ve itirazlarını iletebilecekleri resmi makamlar vs. konusunda açık, anlaşılır ve internet ortamına uygun şekilde SATICI tarafından bilgilendirildiğini, bu önbilgileri elektronik ortamda teyit ettiğini ve sonrasında sigorta ürünü aldığını işbu Sözleşme hükümleri çerçevesinde kabul, beyan ve taahhüt eder.
+                <br>14.3 ALICI, SATICI’nın poliçe teklifi ve satışı işlemleri için ve bu amaçla sınırlı olmak üzere EK-1 paylaşılan Aydınlatma Metninde sayılan hususlarla sınırlı olmak üzere kişisel verilerini işleme yetkisi verdiğini kabul ve beyan etmektedir. Ayrıca SATICI, ALICI’nın kişisel verilerini işbu Sözleşme amaçları ile sınırlı olmak kaydıyla gerektiğinde kamu kurumları ve iş ortakları ile paylaşabilecektir. 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamındaki daha detaylı açıklamalara https://www.bupaacibadem.com.tr/kisisel-verilerin-korunmasi/kisisel-verilerin-korunmasi-sigortalilar-aydinlatma-metni web sitemizden ulaşabilirsiniz.
+                <br><br>
+                <table class="table table-bordered">
+                    <tr>
+                        <td width="50%">
+                            <strong>ALICI</strong>
+                        </td>
+                        <td width="50%">
+                            <strong>SATICI</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="customer-name"></td>
+                        <td>Acıbadem Grubu Sigorta Aracılık Hizmetleri A.Ş.</td>
+                    </tr>
+                </table>
+
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-lg" id="on-bilgilendirme" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel"></h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">×</span>
+    </button>
+</div>
+<div class="modal-body">
+    <img class="embed-responsive-item-pdf" src="~/img/tss-bilgilendirme-formu-26102018-1.jpg"></img>
+</div>
+
+<div class="modal-body" style="display:none">
+<strong>
+    KİŞİYE ÖZEL TAMAMLAYICI SAĞLIK SİGORTASI<br/>
+    BİLGİLENDİRME FORMU
+</strong><br/><br/>
+En az iki nüsha olarak düzenlenen bu form, 6102 Sayılı Türk Ticaret Kanunu’nun 1423. Maddesine ve 28.10.2007 tarihli
+Resmi Gazete’de yayımlanan Sigorta Sözleşmelerinde Bilgilendirmeye İlişkin Yönetmelik’eistinaden aydınlatma/bilgilendirme
+yükümlüğünün yerine getirilmesi amacı ile hazırlanmıştır.
+<br>
+<br/>MADDE 1. SİGORTACI’YA İLİŞKİN BİLGİLER<br><br>
+<table class="table table-bordered">
+    <tr>
+        <td width="50%">
+            <strong>SİGORTA ŞİRKETİ</strong>
+        </td>
+        <td width="50%">BUPA ACIBADEM SİGORTA A.Ş.</td>
+    </tr>
+    <tr>
+        <td>ADRES</td>
+        <td>Küçükbakkalköy Mah. Başar Sok. No: 20 34750 Ataşehir - İstanbul</td>
+    </tr>
+    <tr>
+        <td>TELEFON / FAKS NO</td>
+        <td>(0216) 571 55 55 - (0216) 571 55 56</td>
+    </tr>
+</table>
+<br>
+<table class="table table-bordered">
+    <tr>
+        <td width="50%">
+            <strong>SATIŞ KANALI</strong>
+        </td>
+        <td width="50%">
+            <strong></strong>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            TEKNİK PERSONEL
+            ADI - SOYADI
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>ADRES</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TELEFON NO / FAKS NO</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>LEVHA KAYIT NO</td>
+        <td></td>
+    </tr>
+</table>
+<br><br>
+B. UYARILAR<br><br>
+En az iki nüsha olarak düzenlenen bu form, 6102 Sayılı Türk Ticaret Kanunu’nun 1423. Maddesine ve 28.10.2007 tarihli
+Resmi Gazete’de yayımlanan Sigorta Sözleşmelerinde Bilgilendirmeye İlişkin Yönetmelik’eistinaden aydınlatma/bilgilendirme
+yükümlüğünün yerine getirilmesi amacı ile hazırlanmıştır.<br>
+1. Seçilen Sigorta Sözleşmesi/Sözleşmeleri hakkında daha ayrıntılı bilgi almak için, Sağlık Sigortası Genel Şartları
+ile Sigortacı tarafından hazırlanan Poliçe Özel Şartları’nda yer alan hususları dikkatlice okuyunuz. Ürünlerimiz ve
+Anlaşmalı kurumlarımız ile ilgili daha detaylı bilgiye satış kanalınız aracılığı ile veya www.bupaacibadem.com.tr
+adresi üzerinden ulaşabilirsiniz.<br>
+2. Sigortacı’nın sorumluluğu, sigorta sözleşmesinin kurulmuş olması halinde, sigorta priminin tamamının veya
+taksitle yapılan ödemelerde, peşinatın ödenmesi halinde başlar.<br>
+3. İleride doğabilecek birtakım ihtilafları önlemek için, prim ödemelerinizde (peşin veya taksitle) ödeme belgesi
+almayı unutmayınız.<br>
+4. Sigorta Ettiren ile Sigortacı tarafından mutabık kalınan/ kararlaştırılan prim ödeme vadeleri kesin vade niteliğindedir.
+Sigorta Ettiren, kararlaştırılan prim taksitlerinin herhangi birini kararlaştırılan vade tarihinde ödemediği taktirde
+temerrüde düşer ve Türk Ticaret Kanunu’nun 1434. maddesi uygulanır. Sigortacı’nın, Sigorta Ettiren’in temerrüdü
+nedeniyle Türk Borçlar Kanunundan doğan diğer hakları saklıdır.<br>
+5. Sigortalandıktan sonra www.sencard.com.tr adresinde yer alan websen bölümünü tıklayarak, T.C. Kimlik
+numaranız ve sisteme kayıtlı cep telefonunuz aracılığıyla şifre alabilir, poliçe bilgilerinizi görüntüleyebilir, tazminat
+detaylarını inceleyebilir, kişisel bilgilerinizi güncelleyebilir, hatta medikal tetkik sonuçlarınızı da online olarak
+takip etmeye başlayabilirsiniz.<br>
+6. Sigorta Ettiren ve/veya Sigortalı’nın, poliçe başlangıç tarihinden itibaren ilk 30 gün içerisinde yazılı olarak cayma
+talebinde bulunması halinde, risk gerçekleşmemiş ve bu talep tarihine kadar yapılmış herhangi bir tazminat
+talebinin olmaması durumunda, ödenen primler kesintisiz olarak Sigorta Ettiren’e iade edilir.
+Sigorta Ettiren ile Sigortacı tarafından mutabık kalınan/ kararlaştırılan prim ödeme vadeleri kesin vade niteliğindedir.
+Sigorta Ettiren, kararlaştırılan prim taksitlerinin herhangi birini kararlaştırılan vade tarihinde ödemediği taktirde
+temerrüde düşer ve Türk Ticaret Kanunu’nun 1434. maddesi uygulanır. Sigortacı’nın, Sigorta Ettiren’in temerrüdü
+nedeniyle Türk Borçlar Kanunundan doğan diğer hakları saklıdır.<br>
+7. Poliçenin başlangıç tarihinden itibaren 30 günlük sürenin dolmasından sonra ve/veya talep tarihine kadar herhangi
+bir tazminat ödemesinin yapılmış olması halinde; poliçenin iptalinin talep edilmesi durumunda iade edilecek prim
+bir tazminat ödemesinin yapılmış olması halinde; poliçenin iptalinin talep edilmesi durumunda iade edilecek prim
+tutarı, gün esaslı prim hesaplanarak belirlenir [(Toplam prim)/365*(sigortalı kalınan süre)].
+Ödenmiş tazminat tutarı, tazminat prim oranının %65’inden fazla ise prim iadesi yapılmaz.<br>
+8.<br>
+Tamamlayıcı Sağlık Sigortası ürününde, sigortalı olunmadan önce var olan mevcut rahatsızlık ve hastalıklar ile
+bunların periyodik devamlılık ve nüksleri ile bunlara bağlı olarak gelişen komplikasyonlara ilişkin tüm giderler
+kapsam dışı olup aşağıda detayı belirtilen Hastalık/Risk Grupları’ndan herhangi birine sahip olan kişiler bu ürün
+kapsamında sigortalanamaz. Hastalık/Risk Grupları; Tüm Malign (Her türlü kanser, kötü huylu/seyirli tümör, kitle vb.)
+hastalıklar, Organ yetmezlikleri, eksiklikleri, anomalileri ile organ nakil hastaları vb., Kronik Akciğer, Kronik Karaciğer
+ve Kronik Böbrek Hastalıkları (Diyaliz Hastaları, Tek Böbrekliler, Polikistik Böbrek, Nefrotik Sendrom, Tüberkiloz, Sarkoidoz,
+Amfizem, Hepatitler, Siroz vb.), Kalp ve Damar Sistemi Hastalıkları (İskemik Kalp Hastalıkları, Miyokard Enfarktüsü,
+Kalp Kapak Hastalıkları By Pass Geçirenler, PTCA, Stent Hasta Sinüs Sendromu, Kardiyomyopati, Kalp Yetmezliği,
+Hipertansiyon, Vaskülitler, Anevrizmalar, Malformasyonlar vb.), Kas İskelet Sisteminin Kronik Hastalıkları (Myastenia Gravis,
+Konjenital Myopatiler, Muskuler Distrofiler vb.), Merkezi Sinir Sisteminin Organik ve İlerleyici Hastalıkları (Epilepsi, Felç,
+Alzheimer, Parkinson, Serebral Palsi, Multipl Skleroz vb.), Sindirim Sisteminin Kronik Enflamatuar Hastalıkları (Crohn,
+Ülseratif Kolit, Pankreatit vb.), Psikolojik/Psikotik Hastalıklar (Major Depresyon, Psikozlar, Bipolar Bozukluklar,
+Obsesif Kompülsif Bozukluk, Yeme Bozuklukları vb.), Motor Gelişme Gerilikleri, Alkol, uyuşturucu ve madde bağımlılığı,
+Metabolik ve Endokrin Hastalıklar (Addison Hastalığı, Cushing Sendromu, Obezite, Diabet, vb.), Kalıcı beyin, omurilik
+hasarı, multiple travma ve ciddi yanıklar vb., Kan-kan yapıcı organların hastalıkları, kanama ve pıhtılaşma bozuklukları
+(Hemofili, polisitemi, trombositopeni, Majör Thalessemi, Orak Hücreli Anemi,ITP (İdiyopatik Trombositopenik
+Purpura),Aplastik anemi vb.), Romatizmal ve kollajen doku hastalıkları (Romatoid artrit, SLE, ankilozan spondilit,
+FMF, amiloidoz, behçet vb.), Bağışıklık sistemi bozuklukları (AIDS, Immünglobülin eksiklikleri, çölyak vb.), Doğumsal,
+Genetik-Ailevi Hastalıklar (Protein, Karbonhidrat, Lipid metabolizma bozuklukları, MEN Sendromları, Kistik Fibrozis,
+Polipozis vb.), VKI=Kilo/((boy) x (boy)) indeksinin 36 ve üstünde veya 15 ve altında olması (18 yaş ve üstü kişiler için
+geçerlidir), Prematüre doğum (34 hafta ve/veya 2 kg altındaki yeni doğanlar), Tam Görme ve İşitme Kaybı Olanlar.<br>
+9. Sözleşmenin kurulması sırasında veya Sigortacı’nın talep ettiği diğer durumlarda, Başvuru ve Beyan Formu’nda
+yer alan sorulara tam ve doğru olarak cevap veriniz. Başvuru ve Beyan Formu’nda bulunmasa dahi poliçe şartlarını
+etkileyebilecek hususlarda bilgi verme yükümlülüğünüz bulunmaktadır. Sigorta süresince ve riskin gerçekleşmesi
+durumunda Sigortacı’ya eksik veya yanlış bilgi vermekten kaçınınız. Aksi taktirde, Sigortacı’nın Sağlık Sigortası
+Genel Şartları ve Poliçe Özel Şartları ilgili maddeleri gereğince poliçenin iptali ve/veya ilgili hastalıklar için ek şart
+(ek prim, muafiyet,limit, bekleme süresi vb.) uygulama hakkı saklıdır.<br>
+Sigortalı’nın şirkete sağlık geçmişi bilgilerine erişim yetkisi vermediği durumlarda, sözleşme Sigorta Ettiren’in,
+Sigortalı’nın ve temsilci aracılığıyla sigorta yapılıyorsa Temsilci’nin beyanı ve varsa şirketin yazılı sorularına
+verilen cevaplara dayanılarak yapılır. Sigorta Ettiren, Sigortalı ve varsa Temsilci, kendisine sorulan sorulara
+doğru ve eksiksiz cevap vermek, kendisince bilinen ve şirketin sözleşmeyi yapmamasını veya daha ağır şartlarla
+yapmasını gerektirecek bütün halleri bildirmekle yükümlüdür. Şirket, ihtiyaç görmesi halinde, Sigortalı’nın sağlık durumunun tespiti için hekim görüşünün alınmasını isteyebilir. Bahse konu işleme ilişkin masraflar Sigorta Ettiren ve Sigortalı tarafından karşılanır.<br>
+10. İlk sigortalanma tarihinden sonra ortaya çıkan ve yatarak tedavi kapsamındaki tüm işlemler ile ayakta veya yatarak
+olmasına bakılmaksızın tüm fizik tedavi ve rehabilitasyon ile ilgili giderler, ilk sigortalanma tarihinden başlamak
+üzere 3 aylık bekleme süresi boyunca teminat kapsamı dışındadır. Doğum teminatı bulunan poliçede gebelikle ilgili
+giderlerin karşılanabilmesi için, bu teminatın poliçeye dahil edilmesinden itibaren en az 12 ay sigortalılık süresinin
+tamamlanmış olması gerekmektedir. Doğum teminatı kapsamındaki tüm giderler bu teminatın Sigortacıda ve bu
+üründe bir önceki yıl da seçilmesi kaydıyla geçerli olup, teminata ilişkin giderler, seçildiği ilk yıl kapsam dışındadır.
+C. GENEL BİLGİLER<br><br>
+1. TEMİNATLAR<br><br>
+Bu sigortayla aşağıdaki teminatlar sağlanmaktadır. Kapsam altına alınan teminatlar, teminat tutarları Poliçeniz
+ve ekinde yer alan Teminat Tablosu’nda belirtilmiş olup, söz konusu teminatlar için Poliçe ekinde yer alan özel
+şartlardaki hükümler uygulanacaktır. <br>
+I. SAĞLIK SİGORTASI TEMİNATLARI <br>
+Sağlık sigortası teminatı, Sigortalı’nın sigorta başlangıç tarihinden sonra ortaya çıkan rahatsızlıklarına ait sigorta
+süresi içinde gerçekleşen sağlık giderlerini Sağlık Sigortası Genel Şartları ve Poliçe Özel Şartları çerçevesinde
+ve poliçe ekindeki Teminat Tablosu’nda belirtilen limit ve katılım payı oranında tazmin etmeye yöneliktir.<br> <br>
+TEMİNAT SEÇİMİ<br>
+<br>
+<table class="table table-bordered">
+    <tr>
+        <td width="50%">Sigortalı Aday No</td>
+        <td width="50%">
+            <strong></strong>
+        </td>
+    </tr>
+    <tr>
+        <td>Yatarak</td>
+        <td>
+            <input type="radio" checked>
+        </td>
+    </tr>
+
+</table>
+<br>
+<table class="table table-bordered">
+    <tr>
+        <td width="50%">Sigortalı Aday No</td>
+        <td width="50%">
+            <strong></strong>
+        </td>
+    </tr>
+    <tr>
+        <td>Yatarak + Ayakta</td>
+        <td>
+            <input type="radio" checked>
+        </td>
+    </tr>
+
+</table>
+<br>
+<table class="table table-bordered">
+    <tr>
+        <td width="50%">Sigortalı Aday No</td>
+        <td width="50%">
+            <strong></strong>
+        </td>
+    </tr>
+    <tr>
+        <td>Yatarak + Annelik Doğum</td>
+        <td>
+            <input type="radio" checked>
+        </td>
+    </tr>
+
+</table>
+<br>
+<table class="table table-bordered">
+    <tr>
+        <td width="50%">Sigortalı Aday No</td>
+        <td width="50%">
+            <strong></strong>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Yatarak + Ayakta + Annelik
+            Doğum (Rutin Kontrol Dahil)
+        </td>
+        <td>
+            <input type="radio" checked>
+        </td>
+    </tr>
+
+</table>
+MEDİKAL HİZMET AĞI<br>
+<br>
+<table class="table table-bordered">
+    <tr>
+        <td width="50%">Sigortalı Aday No</td>
+        <td width="50%">
+            <strong></strong>
+        </td>
+
+    </tr>
+    <tr>
+        <td>T1</td>
+        <td>
+            <input type="radio" checked>
+        </td>
+    </tr>
+    <tr>
+        <td>T1</td>
+        <td>
+            <input type="radio">
+        </td>
+    </tr>
+
+</table>
+<br><br>
+2. TEMİNAT DIŞI HALLER
+<br><br>
+Teminat Dışı Haller için Sağlık Sigortası Genel Şartları ve Sigortacı tarafından hazırlanan Poliçe Özel Şartları’na bakınız.
+Sigortacı, yenileme dönemlerinde teminatları, teminat limitlerini ve teminatlara bağlı baz primleri belirleyebilir.
+Türk Ticaret Kanunu, Sağlık Sigortası Genel Şartları ile Poliçe Özel Şartları’nda belirtilen Teminat Dışı Haller (Standart
+İstisnalar ve Bekleme Süreleri) maddesinde belirtilen durumlar için ödeme yapılmaz.
+<br><br>
+3. PRİM<br><br>
+TARİFE PRİMİ<br>
+Bilimsel kabul görmüş ya da şirketin tecrübe edilen aktüeryal metodolojileri baz alınarak geçmişin, bugünün ve
+geleceğin frekans, şiddet ve benzeri etkileri gözetilerek hesaplanan baz primdir.<br><br>
+POLİÇE PRİMİ<br>
+Tarife primleri baz alınarak, “Prime İlişkin Düzenlemeler” bölümünde tanımlanmış ek prim ve/veya indirimlerin
+(dönemsel indirimler hariç) uygulanması sonucunda kişiye özel belirlenen primi ifade eder.<br><br>
+ÖDENECEK POLİÇE PRİMİ<br>
+Poliçe primleri baz alınarak, “Prime İlişkin Düzenlemeler” bölümünde tanımlanmış tüm dönemsel indirimlerin
+uygulanması sonucunda kişiye özel belirlenen ödenecek primi ifade eder.<br><br>
+4. AZAMİ İYİ NİYET PRENSİBİ<br><br>
+Sigortacı bu sigorta sözleşmesini ve sözleşme şartlarını Sigorta Ettiren’in beyanına dayalı olarak oluşturmaktadır.
+Bu nedenle Sigorta Ettiren, Başvuru ve Beyan Formu ile bunu tamamlayıcı belgelerde doğru bilgi vermek/beyanda
+bulunmak ve sigorta sözleşmesinin konusunu teşkil eden sigorta sözleşmesi talebinin değerlendirilmesinde etkili
+olacak hususları beyan etmekle yükümlüdür.<br>
+Sonuç olarak azami iyi niyet; sorulmuş olsa da olmasa da Sigorta Ettiren’in sigorta sözleşmesinden yararlanacak
+tüm Sigortalıların, geçmiş ve mevcut hastalıkları ve sağlık durumu ile ilgili tüm bilgileri tam ve yanılmaya mahal
+vermeyecek şekilde, gönüllü olarak Sigortacı’ya bildirmesidir.<br><br>
+D. RİSK KABUL VE PRİME İLİŞKİN DÜZENLEMELER<br><br>
+1. Sigortacı, sigorta sözleşmesinin kurulması aşamasında Sigortalı ve/veya Sigorta Ettiren’in ilk başvurusunda Başvuru
+ve Beyan Formu’nda beyan ettiği tüm bilgileri, yeniden sözleşme yapılması aşamasında ise sağlık beyanına ek olarak
+Sigortalı’nın yıl içindeki tazminatlarını ve sağlık durumunu esas alarak değerlendirme yapar. Sigortacı yapacağı
+değerlendirme sonucunda başvuru aşamasında başvuruyu reddetme, yeniden sözleşme yapılması aşamasında
+ise Sigortalı’nın mevcut rahatsızlıkları ve/veya hastalıkları için ek şart (muafiyet, limit, ek prim, katılım, bekleme
+süresi vb.) uygulama ve sözleşmeyi hiç yenilememe hakkı saklıdır. İlgili başvurunuzun değerlendirme sonucu
+hakkında satış kanalınız aracılığı ile bilgi alabilirsiniz.<br>
+2. Aile indirimi; anne, baba ve 24 yaşına kadar olan çocukların aynı poliçe kapsamında sigortalanması halinde, kişi
+sayısı dikkate alınarak uygulanır.<br>
+3. Yeni doğan bebeğinize ait başvuruyu, bebeğinizin doğum tarihinden 14 gün sonra yapabilirsiniz. Bebeğiniz, Risk
+Kabul Birimi’nin yapacağı değerlendirme sonucuna göre poliçeye dahil edilebilecektir. Poliçeye eklenecek
+kişilerin (yeni doğan bebek ve evlat edinilen çocuklar dahil) primleri, yıllık prim üzerinden gün esasına göre
+hesaplanacaktır.<br>
+4. Sözleşme kapsamında ilk defa sigortalanan veya diğer sigorta şirketinden yapılacak geçişlerde, tarife primi
+uygulanacaktır. Yeni iş, geçiş ve yenilemelerde, sigortalının ikamet adresi, poliçenin kullanım adeti ve tutarları,
+sigortalılık süresi, aile olma hali, ödeme planı değişiklikleri, prim hesaplanması esnasında fiyatın artmasına veya
+azalmasına neden olabilmektedir. Sigortacı’da sona eren sözleşmenin yenileme dönemi sırasında; poliçedeki her
+bir sigortalı için son yıl Ödenen Tazminat/ Ödenecek Poliçe Primi (T/P) oranının değerlendirilmesi sonucu, yeni
+yıl primlerinde indirim uygulanabilir.
+0-1 (bir) yaş aralığındaki çocuklarda ilk poliçe yenilemesinde, Ödenen Tazminat/Ödenecek Poliçe Primi (T/P)
+oranının değerlendirilmesi sonucu, yenilenecek poliçe primlerinde herhangi bir indirim uygulanmayacaktır.<br>
+5. Sigorta priminin tamamının peşin ödenmesi durumunda, peşin ödeme indirimi uygulanacaktır. Ayrıca, Sigortacı
+tarafından dönemsel olarak, düzenlenecek olan kampanyalar kapsamında ve benzeri durumlarda, yukarıda tanımlanan
+indirim ve ek primler dışında her türlü indirim ve ek prim uygulaması yapılabilecektir.<br>
+
+6. Ömür Boyu Yenileme Garantisi, Sigortalı’nın, kesintisiz üç yıl sigortalı kaldığı ve bu süre içerisinde “Azami İyi Niyet Prensibi”
+ilkesine uygun davrandığı durumlarda, Risk Kabul Birimi tarafından yapılacak tıbbi ve teknik değerlendirme sonucuna göre
+sigortalanması uygun görülen kişilere verilebilir. Ancak, Sigortacı’nın değerlendirme sonucuna göre, Sigortalı’ya bu hakkı
+vermeme veya ek şartlarla (muafiyet, limit, ek prim, katılım, bekleme süresi, vb) verme hakkı saklıdır.<br>
+
+7. Diğer sigorta şirketlerinden yapılacak geçişlerde, geçiş (transfer) talepleri, Poliçe Özel Şartları 14 no'lu "Geçiş İşlemleri
+ve Kazanılmış Haklar" maddesi çerçevesinde değerlendirilecek olup, Sigortacı tarafından onaylanması halinde geçerli
+olacaktır. Poliçenin geçiş olarak değerlendirilebilmesi için herhangi bir Sağlık Sigorta Poliçesinde sigortalı olunması ve
+poliçeden çıkış tarihi itibarıyla en geç 30 gün içinde sigortalanması şartı ile kazanılmış haklar korunabilecektir. <br><br>
+E. TAZMİNAT ÖDEMELERİ<br><br>
+1. Anlaşmalı Kuruma başvurulması ve Sosyal Güvenlik Kurumu (SGK) güvencesi kullanılması halinde, Sigortacı
+tedavi masraflarına yönelik ödemeyi, Poliçe Genel veÖzel Şartları ile Poliçe ekinde yer alan Teminat Tablosu
+ve Anlaşmalı Kurum ile yapılan sözleşme çerçevesinde doğrudan Anlaşmalı Kuruma yapacaktır.<br>
+2. SGK ile anlaşmalı olan ancak Sigortacı ile anlaşması olmayan Sağlık Kurumlarında tedavi yapılması halinde,
+sağlık giderleri öncelikle Sigortalı tarafından ödenir. Gerekli bilgi ve belgelerin eksiksiz şekilde Sigortacı’ya
+ulaşmasından itibaren tazminat talebiniz, azami beş gün içinde değerlendirilir. Sağlık Sigortası Genel Şartları
+ve Poliçe Özel Şartları kapsamında olan tazminat talepleri, Poliçe ekinde yer alan Te minat Tablosu’nda
+belirtilen limit, muafiyet, katılım payı dahilinde Sigortacı tarafından uygun bulunması hali nde ödenir. SGK
+ile anlaşmalı olmayan özel hastaneler ve branşlar ile SGK anlaşması olsa dahi SGK kullanılmadan gerçekleşen
+sağlık giderleri poliçe teminat kapsamı dışındadır.<br>
+3. Hak sahipleri, poliçeden doğan haklarını talep edebilmek için, ilgili belgeleri Sigortacı’ya vermekle yükümlüdür.
+Tazminat başvurusu için gereken bilgi ve belgelere ilişkin detayı, poliçenin hazırlanmasını müteakip Sigortacı’nızdan
+isteyebilir veya şirketimiz web sitesinden temin edebilirsiniz. Rizikonun gerçekleşmesi durumunda, gerekli bilgi ve
+belgelerle birlikte işbu formda adres ve telefonları yer alan senCard Hizmet Merkezi’ne başvuruda bulununuz. <br><br>
+F. VERGİ UYGULAMASI<br><br>
+Sağlık Sigortası için ödenen primler vergiye esas matrahtan düşülebilir. Bu konuda lütfen Sigortacı’nıza danışınız.
+<br><br>
+G. TAHKİM SİSTEMİNE ÜYELİK
+<br><br>
+<table class="table table-bordered">
+    <tr>
+        <td width="50%">Sigortalı Aday No</td>
+        <td width="50%">
+            <strong></strong>
+        </td>
+    </tr>
+    <tr>
+        <td>Yatarak + Ayakta</td>
+        <td>
+            <input type="radio" checked>
+        </td>
+    </tr>
+
+</table>
+
+<table class="table table-bordered">
+    <tr>
+        <td width="26%">Sigortacı ; </td>
+        <td width="37%"><input type="radio" checked> Tahkim Sistemine Üye</td>
+        <td width="37%"><input type="radio" checked> Tahkim Sistemine Üye Değil</td>
+
+    </tr>
+
+
+</table>
+<br><br>
+H. ŞİKAYET VE BİLGİ TALEPLERİ<br><br>
+Sigortaya ilişkin her türlü bilgi talepleriniz ve şikayetleriniz için aşağıda yazılı adres, e-posta ve telefonlarımızı
+arayarak Sigortacı’ya ulaşabilirsiniz. Bilgi talepleriniz ve şikayetlerinizin Sigortacı’ya ulaşmasından itibaren en
+geç 15 gün içinde (Sigortacı tarafından gerekli görülmesi halinde araştırma sürecinin sonlandığı tarihten itibaren
+başlayacaktır) tarafımıza verdiğiniz iletişim bilgileri bu bilgilerin verilmemiş olması halinde ise Sigortacı tarafından
+bilinen en son iletişim bilgileriniz kullanılarak cevap verilecektir.<br>
+Şirketiniz tarafından, SMS, telefon, elektronik posta ve benzeri iletişim kanallarından iletilecek bilgilendirme
+ve pazarlama mesajlarının tarafıma gönderilmesini kabul ederim.<br><br>
+<table class="table table-bordered">
+
+
+    <tr>
+        <td width="40%">ADRES </td>
+        <td width="60%">
+            <strong>Sencard Hizmet Merkezi</strong><br>
+            Küçükbakkalköy Mah. Başar Sok. No: 20 34750 Ataşehir - İstanbul
+        </td>
+
+    </tr>
+    <tr>
+        <td width="40%">TELEFON NO </td>
+        <td width="60%">444 9 555</td>
+
+    </tr>
+    <tr>
+        <td width="40%">TELEFON NO </td>
+        <td width="60%">444 9 555</td>
+
+    </tr>
+    <tr>
+        <td width="40%">FAKS NO </td>
+        <td width="60%">(0216) 571 55 56</td>
+
+    </tr>
+    <tr>
+        <td width="40%">EPOSTA </td>
+        <td width="60%">
+            <a href="mailto:mim@sencard.com.tr">mim@sencard.com.tr</a>
+        </td>
+
+    </tr>
+
+</table>
+</div><!--Modal Content./-->
+<div class="modal-footer">
+
+</div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="devam-edemiyoruz" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <p class="text-center">
+                    <img src="~/img/uyari1.png" width="64"/>
+                </p>
+                <p class="UyariMesaj">
+                    <span style="font-size:16px; max-width:500px; text-align:center;">
+                        <span id="odeme-devam-edemiyoruz"></span>. Bu neticede işleminize devam edemiyoruz. Dilerseniz 0216 570 55 55 numaralı Dijital Satış kanalımız ile iletişime geçebilirsiniz. İlginize teşekkür eder, sağlıklı günler dileriz.
+                    </span>
+                </p>
+            </div>
+            <button class="btn-next" style="max-width:300px; margin:0 auto; margin-bottom:30px;" data-dismiss="modal">Tamam</button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="sikca-sorulan-sorular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2>Sıkça Sorulan Sorular</h2>
+                <h3>1. senCard Market üzerinden Tamamlayıcı Sağlık Sigortası satın alma sürecimi tamamladıktan sonra poliçe bilgilerime nasıl ulaşabilirim?</h3>
+                <p>
+                    senCard Market üzerinden poliçe satın alma işlemi gerçekleştirildikten hemen sonra, satın alma adımında kaydettiğiniz cep telefonunuza “Hoş geldin SMS’i” ve E-posta adresinize poliçe bilgileriniz iletilecektir.
+                    <br/><br/>Tüm bunlara ek olarak dilediğiniz zaman <a href="https://www.sencard.com.tr/mobil" target="_blank">senCard Mobil</a> ve <a href="https://www.sencard.com.tr/webSen/" target="_blank">websen</a> üzerinden poliçe bilgilerinize ulaşılabilirsiniz.
+                </p>
+                <h3>2. Poliçemin geçerli olduğu Anlaşmalı Kurum Ağı’nda yer alan sağlık kurumları bilgisine nasıl ulaşabilirim?</h3>
+                <p>Poliçenizin geçerli olduğu ve hizmet alabileceğiniz kurumlara <a href="https://www.sencard.com.tr/sik-kullanilanlar/medikal-hizmet-agi" target="_blank">https://www.sencard.com.tr/sik-kullanilanlar/medikal-hizmet-agi </a> üzerinden ulaşabilirsiniz.</p>
+
+                <h3>3. Online Tamamlayıcı Sağlık Sigortası ile ilgili bir sorum olursa kime danışacağım?</h3>
+                <p>senCard Market üzerinden gerçekleştirdiğiniz tüm işlemlerinizde 0216 570 55 55 no’lu Dijital Satış Kanalımızdan hafta içi her gün 08:30 – 17:30 saatleri arasında detaylı bilgi alabilirsiniz.</p>
+                <h3>4. Online satın alma sürecime devam edemiyorum. Neden Dijital Satış Danışmanına yönlendirildim?</h3>
+                <p>Gerçekleştirdiğiniz işlemleriniz ile ilgili Dijital Satış Danışmanınız’dan detaylı bilgi alabilirsiniz.</p>
+                <h3>5. Neden Online Tamamlayıcı Sağlık Sigortası Yaptırmalıyım?</h3>
+                <p>
+                    Genel Sağlık Sigortası kapsamında alınan hizmetler için, anlaşmalı özel sağlık kuruluşlarında herhangi bir işlem farkı ödemeden, sağlık güvencesine sahip olmak istiyorsanız; senCard Market üzerinden sadece 5 adımda Tamalayıcı Sağlık Sigortasına sahip olabilirsiniz.
+                    <br/><br/>
+                    Bütçenize uygun ödeme seçenekleri, ihtiyacınıza uygun medikal hizmet ağınızı kendi seçimlerinize göre düzenleyebilir, boynerden hediye çeki ve tüm bunlara ek olarak sencard üyelik programının bir üyesi olarak benzersiz ayrıcalıklı hizmetlerden faydalanabilirsiniz.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<form style="display: none;" id="asseco-form" method="post">
+    <input type="text" id="cardOwner" name="cardOwner" placeholder="Card Owner" maxlength="32"/>
+    <input type="text" id="pan" name="pan" placeholder="PAN" maxlength="19"/>
+    <input type="text" id="callbackUrl" name="callbackUrl"/>
+    <select name="expiryMonth" id="expiryMonth">
+        <option value="01">January</option>
+        <option value="02">February</option>
+        <option value="03">March</option>
+        <option value="04">April</option>
+        <option value="05">May</option>
+        <option value="06">June</option>
+        <option value="07">July</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+    </select>
+    <select name="expiryYear" id="expiryYear">
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+        <option value="2030">2030</option>
+        <option value="2031">2031</option>
+        <option value="2032">2032</option>
+        <option value="2033">2033</option>
+        <option value="2034">2034</option>
+    </select>
+    <input id="cvv" type="password" name="cvv" placeholder="CVV" maxlength="4"/>
+    @*<input id="saveCard" type="checkbox" name="saveCard" />*@
+    <input id="cardName" type="text" name="cardName" placeholder="Card Name"/>
+    @*<input id="cardCutoffDay" type="text" name="cardCutoffDay" placeholder="Card Cutoff Day" />*@
+    <input id="installmentCount" type="text" name="installmentCount" placeholder="Installment Count"/>
+    @*<input type="hidden" name="points" />*@
+    <input id="asseco-cardBtn" type="submit" value="Submit"/>
+</form>
+<script src="~/js/vendor/jquery-3.5.1.min.js"></script>
+<!--<script src="~/js/vendor/jquery.slim.min.js"></script>-->
+<script src="~/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/static.js"></script>
+<script src="~/js/advance.js"></script>
+<script src="~/js/main.js"></script>
+<script src="~/js/jsuites.js"></script>
+<!--- <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>-->
+<script src="~/js/jquery.card.js"></script>
+<script src="~/js/payment.js"></script>
+<script src="~/js/time.js"></script>
+<script>
+        $('form').card({
+            container: '.card-wrapper', // *required*
+        });
+    </script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNHVTJRX7R"></script>
+<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NNHVTJRX7R');
+    </script>
+
+</body>
+
+</html>

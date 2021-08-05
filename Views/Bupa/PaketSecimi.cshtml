@@ -1,0 +1,474 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>senCard Market</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/css/sencard.css" rel="stylesheet" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="~/img/favicon.png" type="image/x-icon">
+    <!-- görülmesi amacı ile yazıldı sonradan css klasörüne alınacak -->
+    <style>
+        .teminatlist ul {
+            margin-bottom: 10%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+</head>
+
+<body class="d-flex flex-column h-100">
+<div id="loaderBG" style="display: none">
+    <div id="loader"></div>
+</div>
+
+<header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md fixed-top">
+        <a class="navbar-brand" href="/"></a>
+        <div class="nav-right">
+            <a class="Cagri-Merkezi" href="#">
+                <span>
+                    <img src="~/img/phone.png"/> 0216 570 55 55
+                    <p class="saatler">Hafta içi her gün 08.30 - 17.30</p>
+                </span>
+            </a>
+            <a class="Soru-Cevap" href="#" data-toggle="modal" data-target="#sikca-sorulan-sorular" title="Soru & Cevap">
+                <img src="~/img/ask.png"/> <span class="SText">Soru & Cevap</span>
+            </a>
+        </div>
+    </nav>
+</header>
+
+<!--Header ./-->
+<!-- Contents -->
+<section class="Contents">
+    <div class="container">
+        <div class="row">
+            <ul class="steps">
+                <li class="step step-active ">
+                    <div class="step-content">
+                        <span class="step-text">Giriş</span>
+                        <a href="/" data-toggle="tooltip" data-placement="top" title="Sayfaya geçiş yapınca bilgilerinizi yeniden girmeniz gerekir.">
+                            <span class="step-circle"></span>
+                        </a>
+                    </div>
+                </li>
+                <li class="step step-active">
+                    <div class="step-content">
+                        <span class="step-text">İletişim Bilgisi</span>
+                        <a href="/Bupa/IletisimBilgileri" data-toggle="tooltip" data-placement="top" title="Sayfaya geçiş yapınca bilgilerinizi yeniden girmeniz gerekir.">
+                            <span class="step-circle"></span>
+                        </a>
+                    </div>
+                </li>
+                <li class="step step-active">
+                    <div class="step-content">
+                        <span class="step-text">Sağlık Bilgisi</span>
+                        <a href="/Bupa/SaglikBilgileri" data-toggle="tooltip" data-placement="top" title="Sayfaya geçiş yapınca bilgilerinizi yeniden girmeniz gerekir.">
+                            <span class="step-circle"></span>
+                        </a>
+                    </div>
+                </li>
+                <li class="step  step-active">
+                    <div class="step-content">
+                        <span class="step-text">Paket Seçimi</span>
+                        <span class="step-circle"></span>
+                    </div>
+                </li>
+                <li class="step">
+                    <div class="step-content">
+                        <span class="step-text">Ödeme</span>
+                        <span class="step-circle"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="bupa-logo">
+            <a href="https://www.bupaacibadem.com.tr/" target="_blank">
+                <img src="~/img/bupa-logo.png"/>
+            </a>
+        </div>
+        <h1 class="mt-5">Size en uygun <span>tamamlayıcı sağlık sigortası</span></h1>
+        <h3>
+            Size uygun teminat paketini seçmeden önce tercih ettiğiniz anlaşmalı sağlık kurumu ağını seçmenizi
+            isteyeceğiz.
+        </h3>
+        <div class="Anlasmali-Kurum">
+            <a id="btn-t1" href="#" class="akurum" data-toggle="tooltip" data-placement="top" title="Hizmet verilen tüm branşlarda SGK ile de anlaşmalı özel sağlık kurumlarına ilave  olarak, sadece belirli
+branşlarda SGK ile anlaşmalı olan özel sağlık kurumlarının da dahil olduğu geniş medikal hizmet ağıdır.">
+                Anlaşmalı Kurum Ağı
+            </a>
+            <a id="btn-t2" href="#" class="akurum" data-toggle="tooltip" data-placement="top"
+               title="Hizmet verilen tüm branşlarda SGK ile de anlaşmalı olan özel sağlık kurumlarının yer aldığı medikal hizmet ağıdır.">
+                Anlaşmalı
+                Kurum Ağı
+            </a>
+        </div>
+        <div class="Paketler">
+            <div id="paket-icerik" class="row d-flex justify-content-center"></div>
+        </div>
+        <!--Paketler./-->
+        <div class="row" style="text-align:center;">
+            <button id="btn-ileri" class="btn-nextOrta" type="button" disabled>İleri</button>
+        </div>
+    </div>
+</section>
+<!-- Contents ./-->
+<!--Footer ./-->
+<!-- Modal -->
+<div class="modal fade" id="devam-edemiyoruz" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <p class="text-center">
+                    <img src="~/img/uyari1.png" width="64"/>
+                </p>
+                <p class="UyariMesaj">
+                    <span style="font-size:16px; max-width:500px; text-align:center;">
+                        <span id="paketSecimi-devam-edemiyoruz"></span>. Bu neticede işleminize devam edemiyoruz. Dilerseniz 0216 570 55 55 numaralı Dijital Satış kanalımız ile iletişime geçebilirsiniz. İlginize teşekkür eder, sağlıklı günler dileriz.
+                    </span>
+                </p>
+            </div>
+            <button class="btn-next" style="max-width:300px; margin:0 auto; margin-bottom:30px;" data-dismiss="modal">Tamam</button>
+        </div>
+    </div>
+</div>
+
+<footer class="footer py-3">
+    <div class="col-md-12">
+        <span class="text-muted">© senCard 2021</span>
+        <div class="socials">
+            <a href="https://www.facebook.com/sencardofficial/" target="_blank">
+                <img src="~/img/facebook.png" alt=""/>
+            </a>
+            <a href="https://jm.linkedin.com/company/sencard" target="_blank">
+                <img src="~/img/linkedin.png" alt=""/>
+            </a>
+            <a href="https://www.instagram.com/sencard/" target="_blank">
+                <img src="~/img/instagram.png" alt=""/>
+            </a>
+            <a href="https://twitter.com/sencardofficial" target="_blank">
+                <img src="~/img/twitter.png" alt=""/>
+            </a>
+            <a href="https://www.youtube.com/c/SenCardOfficial" target="_blank">
+                <img src="~/img/youtube.png" alt=""/>
+            </a>
+        </div>
+    </div>
+</footer>
+<!--Footer ./-->
+<!-- Modal -->
+<div class="modal fade" id="devam-edemiyoruz" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body text-center">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <img src="~/img/icon-netification-modal.png" class="py-3"/>
+                <p>
+                    <span style="font-size:16px; max-width:500px; text-align:center;">
+                        Girmiş olduğunuz bilgiler neticesinde işlemlerinize devam edemiyoruz. Dijital Satış
+                        kanalımız sizinle en kısa sürede iletişime geçecektir. İlginize teşekkür eder, sağlıklı
+                        günler dileriz.
+                    </span>
+                </p>
+            </div>
+            <button class="btn-next" style="max-width:300px; margin:0 auto; margin-bottom:30px;">Tamam</button>
+        </div>
+    </div>
+</div>
+<div style="display: none;" id="paket-thumb">
+
+    <div class="col-sm-3">
+        <div class="PakeThumb packet">
+            <div class="Baslik">
+                <h2>
+                    <span class="tedavi-adi">Yatarak Tedavi</span>
+                    <img src="~/img/bilgi-beyaz.png" width="25" title="8 taksitli tutar üzerinden hesaplanmıştır. Peşin ödemelerde ise 5% indirim uygulanmaktadır." data-toggle="tooltip" data-placement="top" title=""/>
+                </h2>
+                <h3>
+                    <span class="tedavi-ucret"></span>
+                </h3>
+            </div>
+            <div class="HediyeCeki">
+                <span class="hediyeceki-tutar"> Güvencenize ek Boyner’den 50 TL’lik HEDİYE ÇEKİ</span>
+                <img src="~/img/bilgi-beyaz.png" width="15" title="Poliçe başlangıç tarihinizden 30 gün sonra hediye çeki kodunuz cep telefonuna SMS ile paylaşılır." data-toggle="tooltip" data-placement="top"/>
+            </div>
+            <!--Hediye Çeki./-->
+            <div class="teminatlist">
+            </div>
+            <!--Teminat List./-->
+            <div id="detay-modals" class="sec">
+                <!-- <p><a href="#" >Detaylı Bilgi</a></p> -->
+                <p>
+                    <a href="#" data-toggle="modal" data-target="#yatd-modal">Detaylı Bilgi</a>
+                </p>
+                <button class="btn SecBtn">Seçiniz</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="modalToAdd">
+    <div class="modal fade" id="modalBtn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center" style="border:1px solid #ededed">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h2 class="ModalBs" style="color:#25aae1">Yatarak ve Ayakta Tedavi ve Doğum</h2>
+                    <p>
+                        <span style="font-size:16px; max-width:500px; text-align:center;"></span>
+                    </p>
+                    <div class="accordion" id="accordionExample">
+                        <!--Yatarak-->
+                        <div class="Yatarak">
+                            <h3 class="ModalCs">
+                                <strong>Yatarak Tedavi Teminatları</strong>
+                            </h3>
+                            <div class="card">
+                                <div class="card-header" id="ameliyat">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#ameliyatC" aria-expanded="true" aria-controls="ameliyatC">
+                                            <span><img src="/img/ameliyaticon.png" width="20" class="float-left;"> Ameliyat</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="ameliyatC" class="collapse show" aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Cerrahi ve ortopedik müdahalelere ilişkin sağlık giderleri bu teminat kapsamında değerlendirilir.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="hastanede-tedavi">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#hastanede-tedaviC" aria-expanded="true" aria-controls="hastanede-tedaviC">
+                                            <span><img src="/img/sunniuzuvicon.png" width="20" class="float-left;"> Hastanede Tedavi &nbsp;</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="hastanede-tedaviC" class="collapse " aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Ameliyat gerektirmeyen ancak tedavinin sağlık kurumunda en az 24 saat yatış gerektirmesi durumunda, yatış tanısı ile ilgili tüm sağlık giderleri bu teminat kapsamında değerlendirilir.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="sunni-uzuv">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#sunni-uzuvC" aria-expanded="true" aria-controls="sunni-uzuvC">
+                                            <span><img src="/img/hastanedeicon.png" width="20" class="float-left;"> Suni Uzuv Giderleri &nbsp;</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="sunni-uzuvC" class="collapse " aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Sigortalılık süresi içinde meydana gelen kaza veya hastalık sonucu gerekli olabilecek protez ve cerrahi uygulamasına ait giderler bu teminat kapsamında değerlendirilir.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="gunubirlik">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#gunubirlikC" aria-expanded="true" aria-controls="gunubirlikC">
+                                            <span><img src="/img/gunubirlikicon.png" width="20" class="float-left;"> Günübirlik Tedavi &nbsp;</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="gunubirlikC" class="collapse " aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Sağlık kurumlarında yatış ve taburcu işlemi yapılmadan 24 saatlik zaman dilimi içinde yapılan ve SUT kapsamında günübirlik tedaviler kategorisinde belirlenen işlemler bu teminat kapsamında değerlendirilir. Detaylar için Özel Şartlar geçerlidir.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="tibbi-malzeme">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#tibbi-malzemeC" aria-expanded="true" aria-controls="tibbi-malzemeC">
+                                            <span><img src="/img/tibbimalzemeicon.png" width="20" class="float-left;"> Tıbbi Malzeme &nbsp;</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="tibbi-malzemeC" class="collapse " aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Poliçe süresi içerisinde meydana gelen bir kaza veya hastalık sonucu uygulanan tedavinin bir parçası olarak kullanılan malzemeler poliçede belirtilen teminat limiti ve ödeme yüzdesi bu teminat kapsamında değerlendirilir.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="evde-bakim">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#evde-bakimC" aria-expanded="true" aria-controls="evde-bakimC">
+                                            <span><img src="/img/evdebakimicon.png" width="20" class="float-left;"> Evde Bakım Hizmetleri &nbsp;</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="evde-bakimC" class="collapse " aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Yatarak tedavi sonrasında, tedavinin devamı için yapılan tıbbi bakım ve tedavilere ilişkin sağlık giderleri ve tıbbi malzeme giderleri bu teminat kapsamında değerlendirilir.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="acil">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#acilC" aria-expanded="true" aria-controls="acilC">
+                                            <span><img src="/img/acilulasimicon.png" width="20" class="float-left;"> Acil Ulaşım &nbsp;</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="acilC" class="collapse " aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Hayati tehlike gösteren acil hallerde yerinde müdahale ve/veya en yakın sağlık kurumuna nakil için yapılan masraflar bu teminat kapsamında değerlendirilir.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!--Yatarak ./-->
+                        <!--Doğum-->
+                        <div class="Dogum pt-3">
+                            <h3 class="ModalCs">
+                                <strong> Doğum Teminatları</strong>
+                            </h3>
+                            <div class="card">
+                                <div class="card-header" id="annelikD">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#annelikDC" aria-expanded="true" aria-controls="annelikDC">
+                                            <span><img src="/img/dogumicon.png" width="20" class="float-left;"> Annelik (Doğum)</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="annelikDC" class="collapse" aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Normal doğum veya sezaryen işlemlerine ait doktor ve hastane giderleri ile hamilelik döneminde tıbbi gereklilik halinde amniosentez işlemi, hamilelik, küretaj, doğum ve sezaryen komplikasyonlarına bağlı yatışlar poliçede belirtilmiş olan teminat limitleriyle bu teminat kapsamında değerlendirilir.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="annelikR">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#annelikRC" aria-expanded="true" aria-controls="annelikRC">
+                                            <span><img src="/img/rutinkontrolicon.png" width="20" class="float-left;"> Annelik (Rutin Kontrol)</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="annelikRC" class="collapse" aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Hamileliği ilgilendiren her türlü kontrol, muayene, rutin tetkik ve ilaçlar teminat tablosunda belirtilen oran ve limitlerle bu teminat kapsamında değerlendirilir.
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--Doğum ./-->
+                        <!--Ayakta-->
+                        <div class="Ayakta pt-3">
+                            <h3 class="ModalCs">
+                                <strong>Ayakta Tedavi Teminatları</strong>
+                            </h3>
+                            <div class="card">
+                                <div class="card-header" id="ayaktat">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#ayaktaDC" aria-expanded="true" aria-controls="ayaktaDC">
+                                            <span><img src="/img/ayaktatedaviicon.png" width="20" class="float-left;"> Ayakta Tedavi</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="ayaktaDC" class="collapse" aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Tanı işlemleri, teşhis ve tedavinin hastanede yatmayı gerektirmediği hallerde, sağlık kurumlarında yapılan işlemler bu teminat kapsamında değerlendirilir.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="fizik-tedavi">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#fizik-tedaviC" aria-expanded="true" aria-controls="fizik-tedaviC">
+                                            <span><img src="/img/fiziktedaviicon.png" width="20" class="float-left;"> Fizik Tedavi ve Rehabilitasyon</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="fizik-tedaviC" class="collapse" aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Hastalığın tedavisi için tıbben gerekli görülen fizik tedavi ve rehabilitasyon giderleri fizik tedavi uzmanı tarafından düzenlenen tedavi planı ve rapor incelenerek teminat tablosunda belirtilen oran ve limitlerle bu teminat kapsamında değerlendirilir.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div><!--Ayakta ./-->
+                    </div>
+                    <p></p>
+                    <p>Detaylar için özel şartları <a href="https://www.bupaacibadem.com.tr/media/5489/kisiye-oze-tamamlayici-saglik-sigortasi-ozel-sartlari.pdf " target="_blank">görüntüleyebilirsiniz.</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="sikca-sorulan-sorular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h2>Sıkça Sorulan Sorular</h2>
+                <h3>1. senCard Market üzerinden Tamamlayıcı Sağlık Sigortası satın alma sürecimi tamamladıktan sonra poliçe bilgilerime nasıl ulaşabilirim?</h3>
+                <p>
+                    senCard Market üzerinden poliçe satın alma işlemi gerçekleştirildikten hemen sonra, satın alma adımında kaydettiğiniz cep telefonunuza “Hoş geldin SMS’i” ve E-posta adresinize poliçe bilgileriniz iletilecektir.
+                    <br/><br/>Tüm bunlara ek olarak dilediğiniz zaman <a href="https://www.sencard.com.tr/mobil" target="_blank">senCard Mobil</a> ve <a href="https://www.sencard.com.tr/webSen/" target="_blank">websen</a> üzerinden poliçe bilgilerinize ulaşılabilirsiniz.
+                </p>
+                <h3>2. Poliçemin geçerli olduğu Anlaşmalı Kurum Ağı’nda yer alan sağlık kurumları bilgisine nasıl ulaşabilirim?</h3>
+                <p>Poliçenizin geçerli olduğu ve hizmet alabileceğiniz kurumlara <a href="https://www.sencard.com.tr/sik-kullanilanlar/medikal-hizmet-agi" target="_blank">https://www.sencard.com.tr/sik-kullanilanlar/medikal-hizmet-agi </a> üzerinden ulaşabilirsiniz.</p>
+
+                <h3>3. Online Tamamlayıcı Sağlık Sigortası ile ilgili bir sorum olursa kime danışacağım?</h3>
+                <p>senCard Market üzerinden gerçekleştirdiğiniz tüm işlemlerinizde 0216 570 55 55 no’lu Dijital Satış Kanalımızdan hafta içi her gün 08:30 – 17:30 saatleri arasında detaylı bilgi alabilirsiniz.</p>
+                <h3>4. Online satın alma sürecime devam edemiyorum. Neden Dijital Satış Danışmanına yönlendirildim?</h3>
+                <p>Gerçekleştirdiğiniz işlemleriniz ile ilgili Dijital Satış Danışmanınız’dan detaylı bilgi alabilirsiniz.</p>
+                <h3>5. Neden Online Tamamlayıcı Sağlık Sigortası Yaptırmalıyım?</h3>
+                <p>
+                    Genel Sağlık Sigortası kapsamında alınan hizmetler için, anlaşmalı özel sağlık kuruluşlarında herhangi bir işlem farkı ödemeden, sağlık güvencesine sahip olmak istiyorsanız; senCard Market üzerinden sadece 5 adımda Tamalayıcı Sağlık Sigortasına sahip olabilirsiniz.
+                    <br/><br/>
+                    Bütçenize uygun ödeme seçenekleri, ihtiyacınıza uygun medikal hizmet ağınızı kendi seçimlerinize göre düzenleyebilir, boynerden hediye çeki ve tüm bunlara ek olarak sencard üyelik programının bir üyesi olarak benzersiz ayrıcalıklı hizmetlerden faydalanabilirsiniz.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/js/vendor/jquery-3.5.1.min.js"></script>
+<script src="~/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/static.js"></script>
+<script src="~/js/main.js"></script>
+<script src="~/js/packageSelection.js"></script>
+<script src="~/js/advance.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NNHVTJRX7R"></script>
+<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NNHVTJRX7R');
+    </script>
+
+</body>
+
+</html>
