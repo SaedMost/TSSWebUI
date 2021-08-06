@@ -27,7 +27,26 @@
     $('input[id="tcno"]').bind('copy', function () { return false; })
     $('input[id="input-cardnumber"]').bind('paste', function () { return false; })
     $('input[id="input-cardnumber"]').bind('copy', function () { return false; })
-    
+
+    //*Doğum Tarihi**/
+    $('#dogumtar').datepicker({
+        dateFormat: "dd-mm-yy",
+        changeDay: true,
+        changeYear: true,
+        minDate: new Date(1949, 2 - 1, 1),
+        monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+        dayNamesMin: ["Pa", "Pt", "Sl", "Ça", "Pe", "Cu", "Ct"],
+        weekStart: 0,
+        todayBtn: "linked",
+        language: "tr",
+        locale:"tr",
+        orientation: "top auto",
+        autoclose: true,
+        maxDate: "today",
+        nextText: "İleri",
+        prevText: "Geri",
+        yearRange: "1949:2022"
+    });
 })()
 
 

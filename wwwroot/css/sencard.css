@@ -199,7 +199,19 @@ footer {
     background: url(../img/date-icon-alpha2.png) no-repeat;
 
 }
-
+.ui-datepicker-title{float:left;width:100%;}
+.ui-datepicker-next {
+    background: #00aeef;
+    color: #fff;
+    float: right;
+    padding: 3px 5px;
+}
+.ui-datepicker-prev {
+    background: #00aeef;
+    padding: 3px 5px;
+    color: #fff;
+    float: left;
+}
 .TCform .formicon {
     position: absolute;
     margin-top: -42px;
@@ -343,7 +355,7 @@ footer {
     font-size: 22px; 
     background-size: 36px;
     color: #ccc;
-    background-position: left; text-indent:24px;
+    background-position: left; text-indent:50px;
     background-position-x: 8px;
     background-position-y: 8px; padding-left:0px;
 }
