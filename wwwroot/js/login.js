@@ -64,9 +64,6 @@ function btnNext() {
     if (isValid === true && blnSonuc === true) {
         postCheckForm();
     }
-    else {
-        postCheckForm();
-    }
 }
 
 function postCheckForm() {
@@ -75,6 +72,7 @@ function postCheckForm() {
         "data": $('#tcno').val(),
         "birthDate": $('#dogumtar').val()
     };
+
     $.ajax({
         url: window.baseUrl+'/tss/api/checkperson',
         method: "POST",

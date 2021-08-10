@@ -92,34 +92,34 @@
             <div class="TCform">
                 <form name="tcform" id="tcform" class="needs-validation" novalidate>
                     <div class="col-xs-12 col-sm-12">
-                        <input name="tcno" id="tcno" type="text" class="form-control" value=""
-                               placeholder="TC Kimlik No" data-mask="00000000000" required>
+                        <input name="tcno" id="tcno" type="text" class="form-control" value="" placeholder="TC Kimlik No" data-mask="00000000000" 
+                               required />
                         <a onclick="document.getElementById('tcno').value = ''" class="temizleTC">Temizle</a>
                         <div class="invalid-feedback tco">
                             Eksik veya hatalı TC Kimlik Numarası girdiniz. Lütfen geçerli bir TC Kimlik Numarası giriniz
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 pt-3">
-                       
+
                         <input name="dogumtar" id="dogumtar" type="date" class="form-control" placeholder="Doğum Tarihi"
-                             data-mask="dd-mm-yyyy" data-date-format="dd-mm-yyyy"  required>
+                                data-date-format="dd-mm-yyyy" required>
                         <div class="invalid-feedback tco">
                             Eksik veya hatalı Doğum tarihi girdiniz. Lütfen geçerli bir tarih giriniz.
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12">
                         @*<div class="recaptcha-wrapper">
-                                <div id="myrecaptcha" class="g-recaptcha"></div>
-                                <div class="rc-anchor-checkbox-label">Ben robot değilim</div>
-                                <div class="recaptcha-info"></div>
-                                <div class="rc-anchor-logo-text">reCAPTCHA</div>
-                                <div class="rc-anchor-pt">
-                                    <a href="https://www.google.com/intl/en/policies/privacy/" target="_blank">Privacy</a>
-                                    <span aria-hidden="true" role="presentation"> - </span>
-                                    <a href="https://www.google.com/intl/en/policies/terms/" target="_blank">Terms</a>
-                                </div>
+                            <div id="myrecaptcha" class="g-recaptcha"></div>
+                            <div class="rc-anchor-checkbox-label">Ben robot değilim</div>
+                            <div class="recaptcha-info"></div>
+                            <div class="rc-anchor-logo-text">reCAPTCHA</div>
+                            <div class="rc-anchor-pt">
+                                <a href="https://www.google.com/intl/en/policies/privacy/" target="_blank">Privacy</a>
+                                <span aria-hidden="true" role="presentation"> - </span>
+                                <a href="https://www.google.com/intl/en/policies/terms/" target="_blank">Terms</a>
                             </div>
-                            <div class="msg-error error"></div>*@
+                        </div>
+                        <div class="msg-error error"></div>*@
                     </div>
                     <div class="col-xs-12 col-sm-12 py-3">
                         <div class="custom-control custom-checkbox">
@@ -413,8 +413,6 @@
         //        }
         //    });
         //}
-
-      
     </script>
 
     @*<script src="https://www.google.com/recaptcha/api.js?onload=recaptchaReady&&render=explicit"></script>*@
