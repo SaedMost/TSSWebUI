@@ -100,12 +100,23 @@ const allSections = ['Yatarak', 'Ayakta', 'Dogum'];
 (function () {
     'use strict'
     $(document).ready(function () {
+
         $('#modalBtn').on('show.bs.modal', function (event) {
             let avaliableSections = $(event.relatedTarget).data("class").split(",");
+            console.log(avaliableSections);
             $("h2.ModalBs").html($(event.relatedTarget).data("title"));
-            let hidingSections = allSections.filter(function (x) { return !_.some(avaliableSections,x); });
-            hidingSections.forEach(function (t) { $(event.target.getElementsByClassName(t)).hide(); });
+
+            //let hidingSections = allSections.filter(function (x) { return !_.some(avaliableSections, x); });
+            let hidingSections = allSections.filter(function (x) {
+                return avaliableSections.indexOf(x) == -1;
+            });
+            console.log(hidingSections);
+
+            hidingSections.forEach(function (t) {
+                $(event.target.getElementsByClassName(t)).hide();
+            });
         });
+
         $('#modalBtn').on('hidden.bs.modal', function (event) {
             allSections.forEach(function (t) { $(event.target.getElementsByClassName(t)).show(); });
             $("h2.ModalBs").html('');
@@ -115,7 +126,7 @@ const allSections = ['Yatarak', 'Ayakta', 'Dogum'];
             "token": localStorage.getItem("token")
         };
         $.ajax({
-            url: window.baseUrl+'/tss/api/PlanList',
+            url: window.baseUrl + '/tss/api/PlanList',
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify(planListRequest),
@@ -123,19 +134,19 @@ const allSections = ['Yatarak', 'Ayakta', 'Dogum'];
                 let planIds = [];
                 let planNames = [];
 
-                data.data.forEach(function(element) {
+                data.data.forEach(function (element) {
                     if (element.planGroup == "T1") {
-                        planIds.push({"T1": element.planId});
-                        planNames.push({"NameT1": element.planName});
+                        planIds.push({ "T1": element.planId });
+                        planNames.push({ "NameT1": element.planName });
                         $('#btn-t1').text('Anlaşmalı Kurum Ağı (' + element.planGroup + ')');
                     }
-                    
+
                     if (element.planGroup == "T2") {
-                        planNames.push({"NameT2": element.planName});
+                        planNames.push({ "NameT2": element.planName });
                         $('#btn-t2').text('Anlaşmalı Kurum Ağı (' + element.planGroup + ')');
-                        planIds.push({"T2": element.planId})
+                        planIds.push({ "T2": element.planId })
                     }
-                    
+
                 });
                 let T1Datas = [];
                 let T2Datas = [];
@@ -167,6 +178,12 @@ const allSections = ['Yatarak', 'Ayakta', 'Dogum'];
 
                 $('#btn-t1').attr('plan-name', T1DatasName);
                 $('#btn-t2').attr('plan-name', T2DatasName);
+
+                $('.loading').css('display', 'none');
+
+                $('#btn-t1').css('display', '');
+                $('#btn-t2').css('display', '');
+                $('#btn-ileri').css('display', '');
             },
             error: function (data) {
                 $("#paketSecimi-devam-edemiyoruz").text(data.responseText);
@@ -185,28 +202,28 @@ $(".akurum").on("click", function (data) {
     if (!$(this).hasClass("active")) {
         $(this).addClass("active");
     }
-    $(this).attr("plan-id").split(',').forEach(function (t) { pageData.push({ planId: t });});
+    $(this).attr("plan-id").split(',').forEach(function (t) { pageData.push({ planId: t }); });
     $(this).attr("plan-name").split(',').forEach(function (t, i) {
         pageData[i]['name'] = t;
         let variable = nameMapping.filter(function (x) { return (x.key === t); })[0]
-        pageData[i]['displayName'] = variable===null?null:variable.value;
+        pageData[i]['displayName'] = variable === null ? null : variable.value;
     });
 
-    pageData.forEach(function(plan){
+    pageData.forEach(function (plan) {
         $.ajax({
-            url: window.baseUrl+'/tss/api/BenefitDetails',
+            url: window.baseUrl + '/tss/api/BenefitDetails',
             method: "POST",
             contentType: "application/json",
-            data: JSON.stringify({ "Data": parseInt(plan.planId), "token": localStorage.getItem("token")})
-        }).done(function(result) {
+            data: JSON.stringify({ "Data": parseInt(plan.planId), "token": localStorage.getItem("token") })
+        }).done(function (result) {
             plan['benefitDetails'] = result.data;
             let calculatePremiumRequest = {
                 "planId": parseInt(plan.planId),
                 "proposalId": parseInt(localStorage.getItem('proposalId')),
-                 "token": localStorage.getItem("token")
+                "token": localStorage.getItem("token")
             }
             $.ajax({
-                url: window.baseUrl+'/tss/api/CalculatePremium',
+                url: window.baseUrl + '/tss/api/CalculatePremium',
                 method: "POST",
                 contentType: "application/json",
                 data: JSON.stringify(calculatePremiumRequest),
@@ -214,17 +231,17 @@ $(".akurum").on("click", function (data) {
             })
                 .done(function (result) { plan['premium'] = result.data.premium; })
                 .fail(function (err) {
-            });
+                });
         })
-            .fail(function(err) {
-            alert(err);
-        });
+            .fail(function (err) {
+                alert(err);
+            });
     });
     $(document).ajaxStop(function () {
         $('#paket-icerik').html('');
         pageData.sort(function (first, second) { return (first.premium - second.premium); }).forEach(function (plan) {
-            $('#paket-thumb .tedavi-adi ').text(plan.displayName ? plan.displayName:"Tedavi Hizmeti");
-            if (_.some(plan.displayName,'Ayakta')) {
+            $('#paket-thumb .tedavi-adi ').text(plan.displayName ? plan.displayName : "Tedavi Hizmeti");
+            if (_.some(plan.displayName, 'Ayakta')) {
                 $('#paket-thumb .HediyeCeki .hediyeceki-tutar').html("Güvencenize ek Boyner’den 100 TL’lik HEDİYE ÇEKİ");
             } else {
                 $('#paket-thumb .HediyeCeki .hediyeceki-tutar').html("Güvencenize ek Boyner’den 50 TL’lik HEDİYE ÇEKİ");
@@ -237,12 +254,12 @@ $(".akurum").on("click", function (data) {
             $('#paket-thumb .tedavi-ucret').attr('data-planid', plan.planId);
             $('#paket-thumb .tedavi-ucret').attr('data-price', plan.premium);
             $('#paket-thumb .tedavi-ucret').html(plan.premium + '<small>,00</small> ₺<small>/yıllık</small>');
-            plan.benefitDetails.forEach(function(bd) {
+            plan.benefitDetails.forEach(function (bd) {
                 let teminatlist = $('#paket-thumb .teminatlist');
                 teminatlist.append('<strong>' + bd.benefitGroupName + '</strong>');
-                teminatlist.append('<ul id='+ bd.benefitGroupId+ '></ul>')
-                bd.benefits.forEach(function(benefit) {
-                    teminatlist.children('#'+bd.benefitGroupId).append('<li>' + benefit.name + '</li>')
+                teminatlist.append('<ul id=' + bd.benefitGroupId + '></ul>')
+                bd.benefits.forEach(function (benefit) {
+                    teminatlist.children('#' + bd.benefitGroupId).append('<li>' + benefit.name + '</li>')
                 });
             });
             $('#paket-icerik').append($('#paket-thumb').html());
@@ -271,9 +288,9 @@ function packageSelection() {
         localStorage.setItem('price', $(this).parents('.packet').find('.tedavi-ucret').data('price'));
         localStorage.setItem('planId', $(this).parents('.packet').find('.tedavi-ucret').data('planid'));
         localStorage.setItem('hediyeceki-tutar', $(this).parents('.packet').find('.hediyeceki-tutar').text());
-        if (_.some(localStorage.getItem('hediyeceki-tutar'),'100')) {
+        if (_.some(localStorage.getItem('hediyeceki-tutar'), '100')) {
             localStorage.setItem('hediyeceki-TL', '100');
-        } else if (_.some(localStorage.getItem('hediyeceki-tutar'),'50')) {
+        } else if (_.some(localStorage.getItem('hediyeceki-tutar'), '50')) {
             localStorage.setItem('hediyeceki-TL', '50');
         }
         let paketIcerik = [];
@@ -299,7 +316,7 @@ $("#btn-ileri").on("click", function (data) {
     }
     document.getElementById("loaderBG").style.display = "block";
     $.ajax({
-        url: window.baseUrl+'/tss/api/UpdatePolicy',
+        url: window.baseUrl + '/tss/api/UpdatePolicy',
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(updatePolicy),
