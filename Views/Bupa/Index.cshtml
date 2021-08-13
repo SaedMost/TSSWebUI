@@ -101,7 +101,8 @@
                     </div>
                     <div class="col-xs-12 col-sm-12 pt-3">
 
-                        <input name="dogumtar" id="dogumtar" type="date" class="form-control" placeholder="Doğum Tarihi"
+                        <input name="dogumtar" id="dogumtar" type="date" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}
+" placeholder="Doğum Tarihi"
                                 data-date-format="dd-mm-yyyy" required>
                         <div class="invalid-feedback tco">
                             Eksik veya hatalı Doğum tarihi girdiniz. Lütfen geçerli bir tarih giriniz.
