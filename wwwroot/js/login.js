@@ -11,6 +11,9 @@ function btnNext() {
     //    isValid = false;
     //}
 
+
+    
+
     let forms = document.getElementsByClassName('needs-validation')
     Array.prototype.filter.call(forms, function (form) {
         if (form.checkValidity() === false) {
@@ -21,7 +24,9 @@ function btnNext() {
             TC_No_Kaydet();
         }
     });
+ 
 
+    /*TC Valid */
     let parTC = $("#tcno").val();
     let blnSonuc = true;
     let strTC = String(parTC);
