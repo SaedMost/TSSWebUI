@@ -102,25 +102,63 @@ const allSections = ['Yatarak', 'Ayakta', 'Dogum'];
     $(document).ready(function () {
 
         $('#modalBtn').on('show.bs.modal', function (event) {
-            let avaliableSections = $(event.relatedTarget).data("class").split(",");
-            console.log(avaliableSections);
-            $("h2.ModalBs").html($(event.relatedTarget).data("title"));
+            //let avaliableSections = $(event.relatedTarget).data("class").split(",");
+            //$("h2.ModalBs").html($(event.relatedTarget).data("title"));
+            ////let hidingSections = allSections.filter(function (x) { return !_.some(avaliableSections, x); });
+            //let hidingSections = allSections.filter(function (x) { return avaliableSections.indexOf(x) == -1; });
+            //hidingSections.forEach(function (t) {
+            //    $(event.target.getElementsByClassName(t)).hide();
+            //});
 
-            //let hidingSections = allSections.filter(function (x) { return !_.some(avaliableSections, x); });
-            let hidingSections = allSections.filter(function (x) {
-                return avaliableSections.indexOf(x) == -1;
-            });
-            console.log(hidingSections);
+            var planId = $(event.relatedTarget).data("planid");
+            var plan = pageData.filter(x => x.planId == planId)[0];
 
-            hidingSections.forEach(function (t) {
-                $(event.target.getElementsByClassName(t)).hide();
+            $('#modal-benefitdetails-dynamic-title').text(plan.displayName);
+
+            var accordionSections = '';
+            var accordionSectionContent = '';
+
+            plan.benefitDetails.forEach(function (item, index) {
+                item.benefits.forEach(function (subItem, subIndex) {
+                    accordionSectionContent += `
+                               <div class="card">
+                                <div class="card-header" id="acil">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#${subItem.iconClass}" aria-expanded="true" aria-controls="acilC">
+                                            <span><i class="iconcls ${subItem.iconClass}"></i> ${subItem.name} &nbsp;</span> <img src="/img/arrowdown.png" width="20" class="arrowdown">
+                                        </button>
+                                    </h2>
+                                </div>
+
+                                <div id="${subItem.iconClass}" class="collapse " aria-labelledby="heading1One" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        ${subItem.description}
+                                    </div>
+                                </div>
+                            </div>
+                            `;
+                });
+
+                accordionSections += `
+                        <div class="Yatarak">
+                            <h3 class="ModalCs">
+                                <strong>${item.benefitGroupName}</strong>
+                            </h3>                          
+                            ${accordionSectionContent}
+                        </div>
+                        `;
+
+                accordionSectionContent = '';
             });
+
+            $('.modal-benefitdetails-dynamic-content').html(accordionSections);
         });
 
         $('#modalBtn').on('hidden.bs.modal', function (event) {
             allSections.forEach(function (t) { $(event.target.getElementsByClassName(t)).show(); });
             $("h2.ModalBs").html('');
         });
+
         let planListRequest = {
             "proposalId": localStorage.getItem('proposalId'),
             "token": localStorage.getItem("token")
@@ -195,15 +233,25 @@ const allSections = ['Yatarak', 'Ayakta', 'Dogum'];
 
 })()
 
+
+
+let pageData = [];
 $(".akurum").on("click", function (data) {
     document.getElementById("loaderBG").style.display = "block";
-    let pageData = []
+    //let pageData = []
+    pageData = [];
     $(".akurum").removeClass("active");
     if (!$(this).hasClass("active")) {
         $(this).addClass("active");
     }
-    $(this).attr("plan-id").split(',').forEach(function (t) { pageData.push({ planId: t }); });
-    $(this).attr("plan-name").split(',').forEach(function (t, i) {
+
+    var planIds = $(this).attr("plan-id").split(',');
+    planIds.forEach(function (t) {
+        pageData.push({ planId: t });
+    });
+
+    var planNames = $(this).attr("plan-name").split(',');
+    planNames.forEach(function (t, i) {
         pageData[i]['name'] = t;
         let variable = nameMapping.filter(function (x) { return (x.key === t); })[0]
         pageData[i]['displayName'] = variable === null ? null : variable.value;
@@ -251,6 +299,8 @@ $(".akurum").on("click", function (data) {
             $('#paket-thumb #detay-modals p a').attr('data-target', '#modalBtn');
             $('#paket-thumb #detay-modals p a').attr('data-class', oname === null ? null : oname.class.join(','));
             $('#paket-thumb #detay-modals p a').attr('data-title', oname === null ? null : oname.value);
+            $('#paket-thumb #detay-modals p a').attr('data-planid', plan.planId);
+
             $('#paket-thumb .tedavi-ucret').attr('data-planid', plan.planId);
             $('#paket-thumb .tedavi-ucret').attr('data-price', plan.premium);
             $('#paket-thumb .tedavi-ucret').html(plan.premium + '<small>,00</small> ₺<small>/yıllık</small>');

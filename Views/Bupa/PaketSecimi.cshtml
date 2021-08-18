@@ -228,13 +228,13 @@ branşlarda SGK ile anlaşmalı olan özel sağlık kurumlarının da dahil oldu
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h2 class="ModalBs" style="color:#25aae1">Yatarak ve Ayakta Tedavi ve Doğum</h2>
+                    <h2 class="ModalBs" style="color:#25aae1" id="modal-benefitdetails-dynamic-title"></h2>
                     <p>
                         <span style="font-size:16px; max-width:500px; text-align:center;"></span>
                     </p>
-                    <div class="accordion" id="accordionExample">
-                        <!--Yatarak-->
-                        <div class="Yatarak">
+                    <div class="accordion modal-benefitdetails-dynamic-content" id="accordionExample">
+                        
+                        @*<div class="Yatarak">
                             <h3 class="ModalCs">
                                 <strong>Yatarak Tedavi Teminatları</strong>
                             </h3>
@@ -338,8 +338,8 @@ branşlarda SGK ile anlaşmalı olan özel sağlık kurumlarının da dahil oldu
                                 </div>
                             </div>
 
-                        </div><!--Yatarak ./-->
-                        <!--Doğum-->
+                        </div>
+
                         <div class="Dogum pt-3">
                             <h3 class="ModalCs">
                                 <strong> Doğum Teminatları</strong>
@@ -374,8 +374,8 @@ branşlarda SGK ile anlaşmalı olan özel sağlık kurumlarının da dahil oldu
                                     </div>
                                 </div>
                             </div>
-                        </div><!--Doğum ./-->
-                        <!--Ayakta-->
+                        </div>
+
                         <div class="Ayakta pt-3">
                             <h3 class="ModalCs">
                                 <strong>Ayakta Tedavi Teminatları</strong>
@@ -411,7 +411,7 @@ branşlarda SGK ile anlaşmalı olan özel sağlık kurumlarının da dahil oldu
                                 </div>
                             </div>
 
-                        </div><!--Ayakta ./-->
+                        </div>*@
                     </div>
                     <p></p>
                     <p>Detaylar için özel şartları <a href="https://www.bupaacibadem.com.tr/media/5489/kisiye-oze-tamamlayici-saglik-sigortasi-ozel-sartlari.pdf " target="_blank">görüntüleyebilirsiniz.</a></p>
@@ -420,6 +420,15 @@ branşlarda SGK ile anlaşmalı olan özel sağlık kurumlarının da dahil oldu
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
 <div class="modal fade" id="sikca-sorulan-sorular" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
