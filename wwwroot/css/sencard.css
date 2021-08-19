@@ -2611,3 +2611,115 @@ input[type=number] {
 }
 .modal{padding:0}
 .btn-tekrarode{background:#666;color:#fff;font-size:18px; line-height:22px; margin:20px auto}
+
+.iconcls.hastanede-tedavi {
+    background-image: url('../img/hastanedeicon.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    height: 25px;
+    margin-left:-10px
+}
+
+.iconcls.annelik-rutin-kontrol {
+    background-image: url('../img/rutinkontrolicon.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    height: 25px;
+    margin-left: -10px
+}
+.iconcls.fizik-tedavi-ve-rehabilitasyon {
+    background-image: url('../img/fiziktedaviicon.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    height: 25px;
+    margin-left: -10px
+}
+.iconcls.tibbi-malzeme {
+    background-image: url('../img/tibbimalzemeicon.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    height: 25px;
+    margin-left: -10px
+}
+.iconcls.ayakta-tedavi {
+    background-image: url('../img/ayaktatedaviicon.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    height: 25px;
+    margin-left: -10px
+}
+.iconcls.annelik-dogum {
+    background-image: url('../img/dogumicon.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    height: 25px;
+    margin-left: -10px
+}
+.iconcls.ameliyat {
+    background-image: url('../img/ameliyaticon.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    height: 25px;
+    margin-left: -10px
+}
+.iconcls.suni-uzuv-giderleri {
+    background-image: url('../img/sunniuzuvicon.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    height: 25px;
+    margin-left: -10px
+}
+.iconcls.acil-ulasim {
+    background-image: url('../img/acilulasimicon.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    height: 25px;
+    margin-left: -10px
+}
+.iconcls.gunubirlik-tedavi {
+    background-image: url('../img/gunubirlikicon.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    height: 25px;
+    margin-left: -10px
+}
+.iconcls.hastane-disi-tedavi {
+    background-image: url('../img/evdebakimicon.png');
+    background-size: cover;
+    background-position: center;
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    height: 25px;
+    margin-left: -10px
+}
