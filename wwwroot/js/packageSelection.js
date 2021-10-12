@@ -251,9 +251,14 @@ $(".akurum").on("click", function (data) {
     });
 
     var planNames = $(this).attr("plan-name").split(',');
+
     planNames.forEach(function (t, i) {
         pageData[i]['name'] = t;
-        let variable = nameMapping.filter(function (x) { return (x.key === t); })[0]
+
+        let variable = nameMapping.filter(function (x) {
+            return (x.key === t);
+        })[0];
+
         pageData[i]['displayName'] = variable === null ? null : variable.value;
     });
 
