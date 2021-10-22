@@ -119,20 +119,20 @@
                             Eksik veya hatalı Cep Telefonu Numarası girdiniz. Lütfen geçerli bir Cep Telefonu Numarası giriniz.
                         </div>
                     </div>
-                    @*<div class="col-xs-12 col-sm-12">
-                            <div class="recaptcha-wrapper">
-                                <div id="myrecaptcha" class="g-recaptcha"></div>
-                                <div class="rc-anchor-checkbox-label">Ben robot değilim</div>
-                                <div class="recaptcha-info"></div>
-                                <div class="rc-anchor-logo-text">reCAPTCHA</div>
-                                <div class="rc-anchor-pt">
-                                    <a href="https://www.google.com/intl/en/policies/privacy/" target="_blank">Privacy</a>
-                                    <span aria-hidden="true" role="presentation"> - </span>
-                                    <a href="https://www.google.com/intl/en/policies/terms/" target="_blank">Terms</a>
-                                </div>
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="recaptcha-wrapper">
+                            <div id="myrecaptcha" class="g-recaptcha"></div>
+                            <div class="rc-anchor-checkbox-label">Ben robot değilim</div>
+                            <div class="recaptcha-info"></div>
+                            <div class="rc-anchor-logo-text">reCAPTCHA</div>
+                            <div class="rc-anchor-pt">
+                                <a href="https://www.google.com/intl/en/policies/privacy/" target="_blank">Privacy</a>
+                                <span aria-hidden="true" role="presentation"> - </span>
+                                <a href="https://www.google.com/intl/en/policies/terms/" target="_blank">Terms</a>
                             </div>
-                            <div class="msg-error error"></div>
-                        </div>*@
+                        </div>
+                        <div class="msg-error error"></div>
+                    </div>
                     <div class="col-xs-12 col-sm-12 pt-1 pb-2">
                         <div class="custom-control custom-checkbox">
 
@@ -516,29 +516,26 @@
     <script src="~/js/static.js"></script>
     <script src="~/js/advance.js"></script>
     <script src="~/js/main.js"></script>
-
-    <script src="~/js/vendor/axios.min.js"></script>
     <script src="~/js/login.js"></script>
-
     <script src="~/js/jsuites.js"></script>
     <script src="~/js/jquery.validate.tcno.js"></script>
     <script src="~/js/first.js"></script>
 
     <!-- Recaptcha -->
-    @*<script src="https://www.google.com/recaptcha/api.js" async defer></script>*@
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
-        //function recaptchaReady() {
-        //    grecaptcha.render('myrecaptcha', {
-        //        'sitekey': '6LedK10aAAAAAKvTfopfzGhI31jNstj4M9h8RrTf',
-        //        'expired-callback': function () {
-        //            grecaptcha.reset();
-        //            $captcha.addClass("error");
-        //        }
-        //    });
-        //}
+        function recaptchaReady() {
+            grecaptcha.render('myrecaptcha', {
+                'sitekey': '6LedK10aAAAAAKvTfopfzGhI31jNstj4M9h8RrTf',
+                'expired-callback': function () {
+                    grecaptcha.reset();
+                    $captcha.addClass("error");
+                }
+            });
+        }
     </script>
 
-    @*<script src="https://www.google.com/recaptcha/api.js?onload=recaptchaReady&&render=explicit"></script>*@
+    <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaReady&&render=explicit"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNHVTJRX7R"></script>

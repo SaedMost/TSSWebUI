@@ -115,16 +115,16 @@ let firstSectionData = {
 
 function btnFirstNext() {
 
-    //let $captcha = $('#recaptcha'), response = grecaptcha.getResponse();
+    let $captcha = $('#recaptcha'), response = grecaptcha.getResponse();
     let isValid = true;
-    //if (response.length === 0) {
-    //    $('.msg-error').text("reCAPTHCA doğrulamasını doğru yapmadınız, lütfen tekrar deneyiniz.");
-    //    if (!$captcha.hasClass("error")) {
-    //        $captcha.addClass("error");
-    //        TC_No_Kaydet();
-    //    }
-    //    isValid = false;
-    //}
+    if (response.length === 0) {
+        $('.msg-error').text("reCAPTHCA doğrulamasını doğru yapmadınız, lütfen tekrar deneyiniz.");
+        if (!$captcha.hasClass("error")) {
+            $captcha.addClass("error");
+            TC_No_Kaydet();
+        }
+        isValid = false;
+    }
 
     let forms = document.getElementsByClassName('needs-validation')
     Array.prototype.filter.call(forms, function (form) {
@@ -567,108 +567,108 @@ function openInfoModal(title, message) {
     $("#info-modal").modal('toggle');
 }
 
-function axiosExample() {
+//function axiosExample() {
 
-    let checkPersonRequest = {
-        "data": firstSectionData.idNumber,
-        "birthDate": firstSectionData.birthDate
-    };
+//    let checkPersonRequest = {
+//        "data": firstSectionData.idNumber,
+//        "birthDate": firstSectionData.birthDate
+//    };
 
-    if (new RegExp('[0-9]{11}').test(checkPersonRequest.data) == false || new RegExp('[0-9]{4}-[0-9]{2}-[0-9]{2}').test(checkPersonRequest.birthDate) == false) {
-        $('#sms-dogrulama-basarili-modal').modal('toggle');
-        document.getElementById("loaderBG").style.display = "none";
-        $("#devam-edemiyoruz1").modal();
-        $('.UyariMesaj').html('Hatalı veri girişi!');
-        return;
-    }
+//    if (new RegExp('[0-9]{11}').test(checkPersonRequest.data) == false || new RegExp('[0-9]{4}-[0-9]{2}-[0-9]{2}').test(checkPersonRequest.birthDate) == false) {
+//        $('#sms-dogrulama-basarili-modal').modal('toggle');
+//        document.getElementById("loaderBG").style.display = "none";
+//        $("#devam-edemiyoruz1").modal();
+//        $('.UyariMesaj').html('Hatalı veri girişi!');
+//        return;
+//    }
 
-    document.getElementById("loaderBG").style.display = "block";
+//    document.getElementById("loaderBG").style.display = "block";
 
-    axios
-        .post(window.baseUrl + '/tss/api/checkperson', JSON.stringify(checkPersonRequest), { headers: { 'Content-Type': 'application/json' } })
-        .then(checkPersonResponse => {
-            if (checkPersonResponse.data.isSuccess) {
-                localStorage.setItem("token", checkPersonResponse.data.data.token);
-                localStorage.setItem("customer", checkPersonResponse.data.data.name + ' ' + checkPersonResponse.data.data.surname);
+//    axios
+//        .post(window.baseUrl + '/tss/api/checkperson', JSON.stringify(checkPersonRequest), { headers: { 'Content-Type': 'application/json' } })
+//        .then(checkPersonResponse => {
+//            if (checkPersonResponse.data.isSuccess) {
+//                localStorage.setItem("token", checkPersonResponse.data.data.token);
+//                localStorage.setItem("customer", checkPersonResponse.data.data.name + ' ' + checkPersonResponse.data.data.surname);
 
-                let advanceRequest = {
-                    "proposalId": checkPersonResponse.data.data.proposalId,
-                    "token": localStorage.getItem("token")
-                };
-                axios
-                    .post(window.baseUrl + '/tss/api/advance', JSON.stringify(advanceRequest), { headers: { 'Content-Type': 'application/json' } })
-                    .then(advanceFirstResponse => {
-                        localStorage.setItem('proposalId', advanceRequest.proposalId);
+//                let advanceRequest = {
+//                    "proposalId": checkPersonResponse.data.data.proposalId,
+//                    "token": localStorage.getItem("token")
+//                };
+//                axios
+//                    .post(window.baseUrl + '/tss/api/advance', JSON.stringify(advanceRequest), { headers: { 'Content-Type': 'application/json' } })
+//                    .then(advanceFirstResponse => {
+//                        localStorage.setItem('proposalId', advanceRequest.proposalId);
 
-                        let contactInfo = {
-                            "Email": firstSectionData.email,
-                            "GSM": firstSectionData.gsm.replace(/"/g, "").replace(/'/g, "").replace(/\(|\)/g, "").replace(' ', '').replace(' ', '').replace(' ', ''),
-                            "ProposalId": localStorage.getItem('proposalId'),
-                            "ContactConsent": firstSectionData.contactConsent,
-                            "Token": localStorage.getItem("token")
-                        };
+//                        let contactInfo = {
+//                            "Email": firstSectionData.email,
+//                            "GSM": firstSectionData.gsm.replace(/"/g, "").replace(/'/g, "").replace(/\(|\)/g, "").replace(' ', '').replace(' ', '').replace(' ', ''),
+//                            "ProposalId": localStorage.getItem('proposalId'),
+//                            "ContactConsent": firstSectionData.contactConsent,
+//                            "Token": localStorage.getItem("token")
+//                        };
 
-                        var emailValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//                        var emailValid = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-                        if (emailValid.test(contactInfo.Email) == false || new RegExp('[0-9]{10}').test(contactInfo.GSM) == false || !contactInfo.ProposalId || contactInfo.contactConsent == '' || contactInfo.ContactConsent == null || !contactInfo.Token) {
-                            $('#sms-dogrulama-basarili-modal').modal('toggle');
-                            document.getElementById("loaderBG").style.display = "none";
-                            $("#devam-edemiyoruz1").modal();
-                            $('#UyariMesaji').html('Hatalı veri girişi!');
-                            return;
-                        }
+//                        if (emailValid.test(contactInfo.Email) == false || new RegExp('[0-9]{10}').test(contactInfo.GSM) == false || !contactInfo.ProposalId || contactInfo.contactConsent == '' || contactInfo.ContactConsent == null || !contactInfo.Token) {
+//                            $('#sms-dogrulama-basarili-modal').modal('toggle');
+//                            document.getElementById("loaderBG").style.display = "none";
+//                            $("#devam-edemiyoruz1").modal();
+//                            $('#UyariMesaji').html('Hatalı veri girişi!');
+//                            return;
+//                        }
 
-                        axios.post(window.baseUrl + '/tss/api/contactInfo', JSON.stringify(contactInfo), { headers: { 'Content-Type': 'application/json' } })
-                            .then(contactInfoResponse => {
-                                if (contactInfoResponse.data.errorMessage == '') {
-                                    localStorage.setItem("customer-email", firstSectionData.email);
+//                        axios.post(window.baseUrl + '/tss/api/contactInfo', JSON.stringify(contactInfo), { headers: { 'Content-Type': 'application/json' } })
+//                            .then(contactInfoResponse => {
+//                                if (contactInfoResponse.data.errorMessage == '') {
+//                                    localStorage.setItem("customer-email", firstSectionData.email);
 
-                                    let advanceSecondRequest = {
-                                        "proposalId": localStorage.getItem('proposalId'),
-                                        "token": localStorage.getItem("token")
-                                    };
-                                    console.log(advanceSecondRequest);
-                                    axios.post(window.baseUrl + '/tss/api/advance', JSON.stringify(advanceSecondRequest), { headers: { 'Content-Type': 'application/json' } })
-                                        .then(advanceSecondResponse => {
-                                            localStorage.setItem('proposalId', advanceSecondRequest.proposalId);
-                                            window.location.href = '/Bupa/SaglikBilgileri';
-                                        })
-                                        .catch(error => {
-                                            console.log(error);
-                                        });
-                                }
-                                else {
-                                    $('#sms-dogrulama-basarili-modal').modal('toggle');
-                                    document.getElementById("loaderBG").style.display = "none";
-                                    $("#devam-edemiyoruz1").modal();
-                                    $('#UyariMesaji').html(response.errorMessage);
-                                    return;
-                                }
-                            })
-                            .catch(error => {
-                                console.log(error);
-                            });
-                    })
-                    .catch(err => {
-                        clearFirstSectionData();
-                        $('#sms-dogrulama-basarili-modal').modal('toggle');
-                        document.getElementById("loaderBG").style.display = "none";
-                        $("#devam-edemiyoruz1").modal();
-                        $('.UyariMesaj').html('İşleminize devam edemiyoruz');
-                        console.log(err);
-                        return;
-                    });
-            }
-            else {
-                clearFirstSectionData();
-                $('#sms-dogrulama-basarili-modal').modal('toggle');
-                document.getElementById("loaderBG").style.display = "none";
-                $("#devam-edemiyoruz1").modal();
-                $('.UyariMesaj').html(data.responseText);
-                return;
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        });
-}
+//                                    let advanceSecondRequest = {
+//                                        "proposalId": localStorage.getItem('proposalId'),
+//                                        "token": localStorage.getItem("token")
+//                                    };
+//                                    console.log(advanceSecondRequest);
+//                                    axios.post(window.baseUrl + '/tss/api/advance', JSON.stringify(advanceSecondRequest), { headers: { 'Content-Type': 'application/json' } })
+//                                        .then(advanceSecondResponse => {
+//                                            localStorage.setItem('proposalId', advanceSecondRequest.proposalId);
+//                                            window.location.href = '/Bupa/SaglikBilgileri';
+//                                        })
+//                                        .catch(error => {
+//                                            console.log(error);
+//                                        });
+//                                }
+//                                else {
+//                                    $('#sms-dogrulama-basarili-modal').modal('toggle');
+//                                    document.getElementById("loaderBG").style.display = "none";
+//                                    $("#devam-edemiyoruz1").modal();
+//                                    $('#UyariMesaji').html(response.errorMessage);
+//                                    return;
+//                                }
+//                            })
+//                            .catch(error => {
+//                                console.log(error);
+//                            });
+//                    })
+//                    .catch(err => {
+//                        clearFirstSectionData();
+//                        $('#sms-dogrulama-basarili-modal').modal('toggle');
+//                        document.getElementById("loaderBG").style.display = "none";
+//                        $("#devam-edemiyoruz1").modal();
+//                        $('.UyariMesaj').html('İşleminize devam edemiyoruz');
+//                        console.log(err);
+//                        return;
+//                    });
+//            }
+//            else {
+//                clearFirstSectionData();
+//                $('#sms-dogrulama-basarili-modal').modal('toggle');
+//                document.getElementById("loaderBG").style.display = "none";
+//                $("#devam-edemiyoruz1").modal();
+//                $('.UyariMesaj').html(data.responseText);
+//                return;
+//            }
+//        })
+//        .catch(err => {
+//            console.log(err);
+//        });
+//}
