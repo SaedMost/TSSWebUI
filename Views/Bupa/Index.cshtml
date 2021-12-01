@@ -119,20 +119,20 @@
                             Eksik veya hatalı Cep Telefonu Numarası girdiniz. Lütfen geçerli bir Cep Telefonu Numarası giriniz.
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12">
-                        <div class="recaptcha-wrapper">
-                            <div id="myrecaptcha" class="g-recaptcha"></div>
-                            <div class="rc-anchor-checkbox-label">Ben robot değilim</div>
-                            <div class="recaptcha-info"></div>
-                            <div class="rc-anchor-logo-text">reCAPTCHA</div>
-                            <div class="rc-anchor-pt">
-                                <a href="https://www.google.com/intl/en/policies/privacy/" target="_blank">Privacy</a>
-                                <span aria-hidden="true" role="presentation"> - </span>
-                                <a href="https://www.google.com/intl/en/policies/terms/" target="_blank">Terms</a>
+                    @*<div class="col-xs-12 col-sm-12">
+                            <div class="recaptcha-wrapper">
+                                <div id="myrecaptcha" class="g-recaptcha"></div>
+                                <div class="rc-anchor-checkbox-label">Ben robot değilim</div>
+                                <div class="recaptcha-info"></div>
+                                <div class="rc-anchor-logo-text">reCAPTCHA</div>
+                                <div class="rc-anchor-pt">
+                                    <a href="https://www.google.com/intl/en/policies/privacy/" target="_blank">Privacy</a>
+                                    <span aria-hidden="true" role="presentation"> - </span>
+                                    <a href="https://www.google.com/intl/en/policies/terms/" target="_blank">Terms</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="msg-error error"></div>
-                    </div>
+                            <div class="msg-error error"></div>
+                        </div>*@
                     <div class="col-xs-12 col-sm-12 pt-3 pb-0">
                         <div class="custom-control custom-checkbox">
 
@@ -314,8 +314,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
                     @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>*@
+                            <span aria-hidden="true">×</span>
+                        </button>*@
                 </div>
                 <div class="modal-body">
                     <p class="text-center">
@@ -337,8 +337,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
                     @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>*@
+                            <span aria-hidden="true">×</span>
+                        </button>*@
                 </div>
                 <div class="modal-body">
                     <p class="text-center">
@@ -360,8 +360,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
                     @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>*@
+                            <span aria-hidden="true">×</span>
+                        </button>*@
                 </div>
                 <div class="modal-body">
                     <p class="text-center">
@@ -473,8 +473,8 @@
                 <div class="modal-header">
                     <h5 class="modal-title info-modal-title" id="exampleModalLabel"></h5>
                     @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>*@
+                            <span aria-hidden="true">×</span>
+                        </button>*@
                 </div>
                 <div class="modal-body">
                     <p id="info-modal-message"></p>
@@ -540,20 +540,20 @@
     <script src="~/js/first.js"></script>
 
     <!-- Recaptcha -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <script>
-        function recaptchaReady() {
-            grecaptcha.render('myrecaptcha', {
-                'sitekey': '6LedK10aAAAAAKvTfopfzGhI31jNstj4M9h8RrTf',
-                'expired-callback': function () {
-                    grecaptcha.reset();
-                    $captcha.addClass("error");
-                }
-            });
-        }
-    </script>
+    @*<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script>
+            function recaptchaReady() {
+                grecaptcha.render('myrecaptcha', {
+                    'sitekey': '6LedK10aAAAAAKvTfopfzGhI31jNstj4M9h8RrTf',
+                    'expired-callback': function () {
+                        grecaptcha.reset();
+                        $captcha.addClass("error");
+                    }
+                });
+            }
+        </script>*@
 
-    <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaReady&&render=explicit"></script>
+    @*<script src="https://www.google.com/recaptcha/api.js?onload=recaptchaReady&&render=explicit"></script>*@
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNHVTJRX7R"></script>
@@ -583,3 +583,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+

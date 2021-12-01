@@ -115,7 +115,7 @@ let firstSectionData = {
 
 function btnFirstNext() {
 
-    let $captcha = $('#recaptcha'), response = grecaptcha.getResponse();
+    let $captcha = $('#recaptcha'), response = true /*grecaptcha.getResponse()*/;
     let isValid = true;
     if (response.length === 0) {
         $('.msg-error').text("reCAPTHCA doğrulamasını doğru yapmadınız, lütfen tekrar deneyiniz.");
@@ -671,4 +671,8 @@ function openInfoModal(title, message) {
 //        .catch(err => {
 //            console.log(err);
 //        });
-//}
+
+
+
+
+
